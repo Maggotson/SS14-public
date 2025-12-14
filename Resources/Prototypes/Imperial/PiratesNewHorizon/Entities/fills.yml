@@ -85,3 +85,21 @@
     stateDoorClosed: crate_door
   - type: AccessReader
     access: [["CaptainPirate"]]
+
+- type: entity
+  id: LockerFreezerPirate
+  suffix: Filled
+  parent: LockerFreezerBase
+  name: Meat freezer
+  description: This is a freezer. Full of meat. This is meat. Full of proteins. 
+  components:
+  - type: StorageFill
+    contents:
+      - id: FoodMeat
+        amount: 6
+      - id: FoodMeatSalami
+        amount: 4
+      - id: FoodMeatRouny
+        amount: 1
+      - id: DrinkMilkCarton
+        amount: 1

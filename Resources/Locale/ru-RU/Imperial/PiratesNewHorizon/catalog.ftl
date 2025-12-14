@@ -58,3 +58,5 @@ pirate-useless-birdtoy-name = Птичья дуделка!
 pirate-useless-birdtoy-description = Приручение птиц в набор не входит.
 pirate-clothing-beltlootbox-name = Лутбокс крутецких шмоток
 pirate-clothing-beltlootbox-description = Содержит(или нет) одежду, а также пояса, помогающие любому пирату в его разбойной жизни.
+pirate-useless-meatfreezer-name = Мясной холодильник
+pirate-useless-meatfreezer-description = Хавка для всех пиратских салаг. Микроволновка не входит в комплект.

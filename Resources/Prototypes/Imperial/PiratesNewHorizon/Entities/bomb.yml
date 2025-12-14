@@ -18,6 +18,8 @@
     min: 7
     max: 12
   - type: ExplodeOnTrigger
+    keysIn:
+    - timer
   - type: Explosive
     explosionType: Default
     totalIntensity: 1000
@@ -51,3 +53,8 @@
     quickEquip: false
     slots:
     - Belt
+  - type: TimerTrigger
+    delay: 5
+    examinable: false
+    initialBeepDelay: 0
+    beepSound: /Audio/Effects/lightburn.ogg

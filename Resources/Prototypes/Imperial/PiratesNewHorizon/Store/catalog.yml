@@ -323,6 +323,17 @@
   - PiratesPointless
 
 - type: listing
+  id: PirateCatalogMeatFreezer
+  name: pirate-useless-meatfreezer-name
+  description: pirate-useless-meatfreezer-description
+  icon: { sprite: Structures/Storage/closet.rsi, state: freezer_icon}
+  productEntity: LockerFreezerPirate
+  cost:
+    Doubloon: 2000
+  categories:
+  - PiratesPointless
+
+- type: listing
   id: PirateCatalogBeltLootbox
   name: pirate-clothing-beltlootbox-name
   description: pirate-clothing-beltlootbox-description
