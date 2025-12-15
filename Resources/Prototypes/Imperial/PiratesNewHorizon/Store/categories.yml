@@ -24,8 +24,13 @@
   priority: 4
 
 - type: storeCategory
+  id: PiratesHydroponics
+  name: store-category-hydroponics-pirate
+  priority: 5
+
+- type: storeCategory
   id: PiratesPointless
   name: store-category-pointless
-  priority: 5
+  priority: 6
 
 #ADD MORE CATEGORIES!!!

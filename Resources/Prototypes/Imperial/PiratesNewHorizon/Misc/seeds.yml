@@ -1,0 +1,20 @@
+- type: seed
+  id: cashtree
+  name: seeds-cashtree-name
+  noun: seeds-noun-seeds
+  displayName: seeds-cashtree-display-name
+  plantRsi: Imperial/PiratesNewHorizon/plants/cashtree.rsi
+  packetPrototype: CashTreeSeeds
+  productPrototypes:
+    - Doubloon1000
+  harvestRepeat: Repeat
+  lifespan: 25
+  maturation: 8
+  production: 6
+  yield: 2
+  potency: 10
+  waterConsumption: 0.60
+  nutrientConsumption: 0.40
+  idealLight: 8
+  idealHeat: 298
+  splatPrototype: PuddleSplatter

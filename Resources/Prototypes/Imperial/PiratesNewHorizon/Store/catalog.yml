@@ -343,3 +343,36 @@
     Doubloon: 5678
   categories:
   - PiratesClothing
+
+- type: listing
+  id: PirateCatalogHydroTray
+  name: pirate-hydro-hydrotray-name
+  description: pirate-hydro-hydrotray-description
+  icon: { sprite: Objects/Devices/flatpack.rsi, state: hydroponics-tray}
+  productEntity: HydroponicsTrayFlatpack
+  cost:
+    Doubloon: 5000
+  categories:
+  - PiratesHydroponics
+
+- type: listing
+  id: PirateCatalogCashTree
+  name: pirate-hydro-cashtree-name
+  description: pirate-hydro-cashtree-description
+  icon: { sprite: Imperial/PiratesNewHorizon/plants/cashtree.rsi, state: seed}
+  productEntity: CashTreeSeeds
+  cost:
+    Doubloon: 2000
+  categories:
+  - PiratesHydroponics
+
+- type: listing
+  id: PirateCatalogGnomeHat
+  name: pirate-hydro-gnomehat-name
+  description: pirate-hydro-gnomehat-description
+  icon: { sprite: Imperial/DRGbeer/hat_gnome.rsi, state: icon}
+  productEntity: ClothingHeadHatGnome
+  cost:
+    Doubloon: 3000
+  categories:
+  - PiratesHydroponics

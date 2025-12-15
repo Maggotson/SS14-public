@@ -1,0 +1,10 @@
+- type: entity
+  parent: SeedBase
+  name: packet of cashtree seeds
+  description: "How wild."
+  id: CashTreeSeeds
+  components:
+    - type: Seed
+      seedId: cashtree
+    - type: Sprite
+      sprite: Imperial/PiratesNewHorizon/plants/cashtree.rsi

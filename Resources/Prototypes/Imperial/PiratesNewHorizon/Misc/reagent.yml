@@ -99,6 +99,9 @@
   flavor: oily
   color: "black"
   recognizable: true
+  plantMetabolism:
+  - !type:PlantAdjustMutationLevel
+    amount: 2
   metabolisms:
     Poison:
       effects:
