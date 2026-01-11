@@ -63,6 +63,6 @@ pirate-useless-meatfreezer-description = Хавка для всех пиратс
 pirate-hydro-hydrotray-name = Горшок
 pirate-hydro-hydrotray-description = Семок туда... И вырастите ромовое дерево... Или дублоновое? Не знаю, спросите кота Базилио.
 pirate-hydro-cashtree-name = Семки дублоннового дерева
-pirate-hydro-cashtree-description = Страна дураков... ЭТО НАНОТРЕЙЗОН. 
+pirate-hydro-cashtree-description = Страна дураков... ЭТО НАНОТРЕЙЗОН.
 pirate-hydro-gnomehat-name = Шляпа домового
 pirate-hydro-gnomehat-description = Ты же будешь ее носить, не больше?
