@@ -364,8 +364,15 @@
   cost:
     Doubloon: 2000
   categories:
-<<<<<<< Updated upstream
   - PiratesHydroponics
-=======
+
+- type: listing
+  id: PirateCatalogGnomeHat
+  name: pirate-hydro-gnomehat-name
+  description: pirate-hydro-gnomehat-description
+  icon: { sprite: Imperial/DRGbeer/hat_gnome.rsi, state: icon}
+  productEntity: ClothingHeadHatGnome
+  cost:
+    Doubloon: 3000
+  categories:
   - PiratesHydroponics
->>>>>>> Stashed changes
