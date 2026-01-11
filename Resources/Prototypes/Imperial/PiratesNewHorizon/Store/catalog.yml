@@ -364,4 +364,8 @@
   cost:
     Doubloon: 2000
   categories:
+<<<<<<< Updated upstream
   - PiratesHydroponics
+=======
+  - PiratesHydroponics
+>>>>>>> Stashed changes

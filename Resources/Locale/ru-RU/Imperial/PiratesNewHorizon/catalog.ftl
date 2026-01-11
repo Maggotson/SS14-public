@@ -61,4 +61,8 @@ pirate-clothing-beltlootbox-description = Содержит(или нет) оде
 pirate-hydro-hydrotray-name = Горшок
 pirate-hydro-hydrotray-description = Семок туда... И вырастите ромовое дерево... Или дублоновое? Не знаю, спросите кота Базилио.
 pirate-hydro-cashtree-name = Семки дублоннового дерева
+<<<<<<< Updated upstream
 pirate-hydro-cashtree-description = Страна дураков... ЭТО НАНОТРЕЙЗОН.
+=======
+pirate-hydro-cashtree-description = Страна дураков... ЭТО НАНОТРЕЙЗОН. 
+>>>>>>> Stashed changes
