@@ -1,0 +1,15 @@
+- type: entity
+  parent: ClothingEyesBase
+  id: ImperialClothingEyesGnomeGlasses
+  name: gnome glasses
+  description: Don't ever give this to a gnome.
+  suffix: Pirates, Gnomes
+  components:
+  - type: Sprite
+    sprite: Imperial/PiratesNewHorizon/gnomeglasses.rsi
+  - type: Clothing
+    sprite: Imperial/PiratesNewHorizon/gnomeglasses.rsi
+  - type: VisionCorrection
+  - type: Tag
+    tags:
+    - HamsterWearable
