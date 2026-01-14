@@ -1,0 +1,39 @@
+- type: entity
+  parent: ClothingHeadset
+  id: ClothingHeadsetPirate
+  name: pirate headset
+  suffix: Pirate
+  description: A pirate headset, the most pirate one.
+  components:
+  - type: ContainerFill
+    containers:
+      key_slots:
+      - EncryptionKeyPirate
+  - type: Sprite
+    sprite: Imperial/PiratesNewHorizon/headset.rsi
+  - type: Clothing
+    sprite: Imperial/PiratesNewHorizon/headset.rsi
+
+- type: entity
+  parent: EncryptionKey
+  id: EncryptionKeyPirate
+  suffix: Pirate
+  name: pirate encryption key
+  description: An encryption key used by pirates, the most real ones!.
+  components:
+    - type: EncryptionKey
+      channels:
+        - Pirate
+      defaultChannel: Pirate
+    - type: Sprite
+      layers:
+        - state: crypt_rusted
+        - state: pirate_label
+
+- type: radioChannel
+  id: Pirate
+  name: chat-radio-pirate
+  keycode: 'е'
+  frequency: 1984
+  color: "#964b00"
+  longRange: true

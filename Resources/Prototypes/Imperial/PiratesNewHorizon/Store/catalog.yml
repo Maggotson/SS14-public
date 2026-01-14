@@ -122,13 +122,78 @@
     Doubloon: 11500
   categories:
   - PiratesUtilities
+
+- type: listing
+  id: PirateCatalogTray
+  name: pirate-utilities-tray-name
+  description: pirate-utilities-tray-description
+  icon: { sprite: Objects/Tools/t-ray.rsi, state: tray-off }
+  productEntity: trayScanner
+  cost:
+    Doubloon: 1200
+  categories:
+  - PiratesUtilities
 #Must-have
 - type: listing
   id: PirateCatalogMedkit
   name: pirate-medicine-medkit-name
   description: pirate-medicine-medkit-description
-  icon: { sprite: /Textures/Objects/Specific/Medical/firstaidkits.rsi, state: firstaid }
-  productEntity: MedkitFilled
+  icon: { sprite: /Textures/Imperial/Other/ImperialMedkits/firstaidkit.rsi, state: closed }
+  productEntity: MedkitImperialFilled
+  cost:
+    Doubloon: 600
+  categories:
+  - PiratesMedicine
+
+- type: listing
+  id: PirateCatalogMedkitToxin
+  name: pirate-medicine-medkittoxin-name
+  description: pirate-medicine-medkittoxin-description
+  icon: { sprite: /Textures/Imperial/Other/ImperialMedkits/toxinmedkit.rsi, state: closed }
+  productEntity: ToxinMedkitImperialFilled
+  cost:
+    Doubloon: 1200
+  categories:
+  - PiratesMedicine
+
+- type: listing
+  id: PirateCatalogMedkitBrute
+  name: pirate-medicine-medkitbrute-name
+  description: pirate-medicine-medkitbrute-description
+  icon: { sprite: /Textures/Imperial/Other/ImperialMedkits/brutemedkit.rsi, state: closed }
+  productEntity: BruteMedkitImperialFilled
+  cost:
+    Doubloon: 1200
+  categories:
+  - PiratesMedicine
+
+- type: listing
+  id: PirateCatalogMedkitAdvanced
+  name: pirate-medicine-medkitadvanced-name
+  description: pirate-medicine-medkitadvanced-description
+  icon: { sprite: /Textures/Imperial/Other/ImperialMedkits/advancedmedkit.rsi, state: closed }
+  productEntity: AdvancedFirstAidMedkitImperialFilled
+  cost:
+    Doubloon: 1500
+  categories:
+  - PiratesMedicine
+- type: listing
+  id: PirateCatalogMedkitRadiation
+  name: pirate-medicine-medkitradiation-name
+  description: pirate-medicine-medkitradiation-description
+  icon: { sprite: /Textures/Imperial/Other/ImperialMedkits/radmedkit.rsi, state: closed }
+  productEntity: MedkitRadiationImperialFilled
+  cost:
+    Doubloon: 1500
+  categories:
+  - PiratesMedicine
+
+- type: listing
+  id: PirateCatalogMedkitBurn
+  name: pirate-medicine-medkitburn-name
+  description: pirate-medicine-medkitburn-description
+  icon: { sprite: /Textures/Imperial/Other/ImperialMedkits/burnmedkit.rsi, state: closed }
+  productEntity: MedkitBurnImperialFilled
   cost:
     Doubloon: 1200
   categories:
@@ -152,7 +217,7 @@
   icon: { sprite: /Textures/Clothing/Back/Duffels/syndicate.rsi, state: icon-med }
   productEntity: ClothingBackpackDuffelPirateDrugs
   cost:
-    Doubloon: 17500
+    Doubloon: 9750
   categories:
   - PiratesMedicine
 #idk, but is pretty great, also has a lot of dmg
@@ -285,7 +350,7 @@
   icon: { sprite: /Textures/Imperial/PiratesNewHorizon/doubloon.rsi, state: black_mark}
   productEntity: BlackMark
   cost:
-    Doubloon: 1450
+    Doubloon: 500
   categories:
   - PiratesPointless
 
@@ -341,6 +406,50 @@
   productEntity: CratePirateBelt
   cost:
     Doubloon: 5678
+  categories:
+  - PiratesClothing
+
+- type: listing
+  id: PirateCatalogHeadset
+  name: pirate-clothing-headset-name
+  description: pirate-clothing-headset-description
+  icon: { sprite: Imperial/PiratesNewHorizon/headset.rsi, state: icon}
+  productEntity: ClothingHeadsetPirate
+  cost:
+    Doubloon: 200
+  categories:
+  - PiratesClothing
+
+- type: listing
+  id: PirateCatalogEyepatch
+  name: pirate-clothing-eyepatch-name
+  description: pirate-clothing-eyepatch-description
+  icon: { sprite: Clothing/Eyes/Misc/eyepatch.rsi, state: icon}
+  productEntity: ClothingEyesEyepatch
+  cost:
+    Doubloon: 100
+  categories:
+  - PiratesClothing
+
+- type: listing
+  id: PirateCatalogEyeBundle
+  name: pirate-clothing-eyebundle-name
+  description: pirate-clothing-eyebundle-description
+  icon: { sprite: Clothing/Eyes/Glasses/jamjar.rsi, state: icon}
+  productEntity: ClothingBackpackDuffelEyeBundle
+  cost:
+    Doubloon: 3500
+  categories:
+  - PiratesClothing
+
+- type: listing
+  id: PirateCatalogGraytide
+  name: pirate-clothing-graytide-name
+  description: pirate-clothing-graytide-description
+  icon: { sprite: Clothing/Mask/gas.rsi, state: icon}
+  productEntity: ClothingBackpackDuffelGraytideBundle
+  cost:
+    Doubloon: 1000
   categories:
   - PiratesClothing
 

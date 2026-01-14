@@ -13,3 +13,12 @@
   - type: Tag
     tags:
     - HamsterWearable
+  - type: PolymorphOnUse
+    destroyOnEnd: true
+    uses: 1
+    configuration: GnomMageMorph
+    whitelist:
+      requireAll: true
+      components:
+      - Produce
+      - RequireProjectileTarget

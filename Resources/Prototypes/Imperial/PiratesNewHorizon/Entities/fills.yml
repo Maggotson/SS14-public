@@ -3,7 +3,7 @@
   suffix: Filled
   parent: CrateSyndicate
   name: Black market shotgun ammo
-  description: Contains all sorts of ammo for shotguns. A great opportunity to start genocide on one of NanoTrasen's stations. 
+  description: Contains all sorts of ammo for shotguns. A great opportunity to start genocide on one of NanoTrasen's stations.
   components:
   - type: StorageFill
     contents:
@@ -91,7 +91,7 @@
   suffix: Filled
   parent: LockerFreezerBase
   name: Meat freezer
-  description: This is a freezer. Full of meat. This is meat. Full of proteins. 
+  description: This is a freezer. Full of meat. This is meat. Full of proteins.
   components:
   - type: StorageFill
     contents:
@@ -103,3 +103,35 @@
         amount: 1
       - id: DrinkMilkCarton
         amount: 1
+
+- type: entity
+  parent: ClothingBackpackDuffel
+  id: ClothingBackpackDuffelGraytideBundle
+  name: graytide bundle
+  description: A perfect opportunity to slip in on board!
+  components:
+  - type: StorageFill
+    contents:
+      - id: ClothingUniformJumpsuitColorGrey
+      - id: ClothingUniformJumpskirtColorGrey
+      - id: ClothingShoesColorBlack
+      - id: ClothingMaskGas
+      - id: PassengerPDA
+      - id: PassengerIDCard
+      - id: ClothingHeadsetGrey
+
+- type: entity
+  parent: ClothingBackpackDuffel
+  id: ClothingBackpackDuffelEyeBundle
+  name: eye bundle
+  description: Eye see how it is...
+  components:
+  - type: StorageFill
+    contents:
+      - id: ClothingEyesGlassesSunglasses
+      - id: ClothingEyesHudSecurity
+      - id: ClothingEyesHudMedical
+      - id: ClothingEyesHudDiagnostic
+      - id: ClothingEyesGlassesMeson
+      - id: ClothingEyesGlassesChemical
+      - id: ClothingEyesHudBeer

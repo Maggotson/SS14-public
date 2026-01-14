@@ -8,3 +8,19 @@
     inventory: None
     revertOnDeath: false
     revertOnCrit: false
+
+- type: polymorph
+  id: GnomMageMorph
+  configuration:
+    entity: MobGnomeWizord
+    forced: true
+    transferName: false
+    transferHumanoidAppearance: true
+    inventory: None
+    revertOnDeath: false
+    revertOnCrit: false
+    revertOnEat: false
+    revertOnDelete: false
+    polymorphPopup: ""
+    exitPolymorphPopup: ""
+
