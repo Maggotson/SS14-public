@@ -4,6 +4,7 @@ using Content.Shared.Chemistry.Components;
 using Content.Shared.Polymorph.Components;
 using Content.Shared.Polymorph.Systems;
 using Robust.Client.GameObjects;
+using Robust.Shared.Player;
 
 namespace Content.Client.Polymorph.Systems;
 
@@ -12,12 +13,15 @@ public sealed class ChameleonProjectorSystem : SharedChameleonProjectorSystem
     [Dependency] private readonly SharedAppearanceSystem _appearance = default!;
     [Dependency] private readonly SpriteSystem _sprite = default!;
 
-    [Dependency] private readonly EntityQuery<AppearanceComponent> _appearanceQuery = default!;
-    [Dependency] private readonly EntityQuery<SpriteComponent> _spriteQuery = default!;
+    private EntityQuery<AppearanceComponent> _appearanceQuery;
+    private EntityQuery<SpriteComponent> _spriteQuery;
 
     public override void Initialize()
     {
         base.Initialize();
+
+        _appearanceQuery = GetEntityQuery<AppearanceComponent>();
+        _spriteQuery = GetEntityQuery<SpriteComponent>();
 
         SubscribeLocalEvent<ChameleonDisguiseComponent, AfterAutoHandleStateEvent>(OnHandleState);
 

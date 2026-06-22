@@ -51,9 +51,6 @@
       maxIntensity: 10000
       intensitySlope: 5
       totalIntensity: 10000
-    - type: DeviceLinkSource
-      ports:
-        - Output
     - type: WarpPoint
       follow: true
       location: supermatter
@@ -62,7 +59,6 @@
       tickDamage:
         types:
           Structural: 0.65
-    - type: SupermatterGas
     - type: SupermatterEvent
     - type: GuideHelp
       guides:

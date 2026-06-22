@@ -15,5 +15,3 @@
     sprite: Imperial/SpiderClan/Clothing/headsets/green.rsi
   - type: Clothing
     sprite: Imperial/SpiderClan/Clothing/headsets/green.rsi
-  - type: EmpResistance
-    strengthMultiplier: 0

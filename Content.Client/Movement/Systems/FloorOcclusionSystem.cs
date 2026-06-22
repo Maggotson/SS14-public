@@ -12,11 +12,13 @@ public sealed class FloorOcclusionSystem : SharedFloorOcclusionSystem
 
     [Dependency] private readonly IPrototypeManager _proto = default!;
 
-    [Dependency] private readonly EntityQuery<SpriteComponent> _spriteQuery = default!;
+    private EntityQuery<SpriteComponent> _spriteQuery;
 
     public override void Initialize()
     {
         base.Initialize();
+
+        _spriteQuery = GetEntityQuery<SpriteComponent>();
 
         SubscribeLocalEvent<FloorOcclusionComponent, ComponentStartup>(OnOcclusionStartup);
         SubscribeLocalEvent<FloorOcclusionComponent, ComponentShutdown>(OnOcclusionShutdown);

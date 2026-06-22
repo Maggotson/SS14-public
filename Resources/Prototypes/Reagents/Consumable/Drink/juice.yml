@@ -53,10 +53,16 @@
   flavor: carrot
   color: "#FF8820"
   metabolisms:
-    Digestion:
-      metabolites:
-        Oculine: 1
-        Nutriment: 1
+    Drink:
+      effects:
+      - !type:SatiateThirst
+        factor: 2
+      - !type:AdjustReagent
+        reagent: Oculine
+        amount: 0.5
+      - !type:AdjustReagent
+        reagent: Nutriment
+        amount: 0.5
 
 - type: reagent
   id: JuiceGrape
@@ -122,6 +128,15 @@
   physicalDesc: reagent-physical-desc-tropical
   flavor: pineapple
   color: yellow
+
+- type: reagent
+  id: JuicePotato
+  name: reagent-name-juice-potato
+  parent: BaseJuice
+  desc: reagent-desc-juice-potato
+  physicalDesc: reagent-physical-desc-starchy
+  flavor: potatoes
+  color: "#302000"
 
 - type: reagent
   id: JuiceTomato

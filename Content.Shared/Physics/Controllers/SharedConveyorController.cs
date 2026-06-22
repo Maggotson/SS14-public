@@ -4,7 +4,6 @@ using Content.Shared.Gravity;
 using Content.Shared.Movement.Components;
 using Content.Shared.Movement.Events;
 using Content.Shared.Movement.Systems;
-using Content.Shared.Stacks;
 using Robust.Shared.Collections;
 using Robust.Shared.Map;
 using Robust.Shared.Physics;
@@ -25,22 +24,25 @@ public abstract class SharedConveyorController : VirtualController
     [Dependency] private   readonly FixtureSystem _fixtures = default!;
     [Dependency] private   readonly SharedGravitySystem _gravity = default!;
     [Dependency] private   readonly SharedMoverController _mover = default!;
-    [Dependency] private   readonly SharedStackSystem _stack = default!;
 
     protected const string ConveyorFixture = "conveyor";
 
     private ConveyorJob _job;
 
-    [Dependency] private readonly EntityQuery<ConveyorComponent> _conveyorQuery = default!;
-    [Dependency] private readonly EntityQuery<ConveyedComponent> _conveyedQuery = default!;
-    [Dependency] protected readonly EntityQuery<PhysicsComponent> PhysicsQuery = default!;
-    [Dependency] protected readonly EntityQuery<TransformComponent> XformQuery = default!;
+    private EntityQuery<ConveyorComponent> _conveyorQuery;
+    private EntityQuery<ConveyedComponent> _conveyedQuery;
+    protected EntityQuery<PhysicsComponent> PhysicsQuery;
+    protected EntityQuery<TransformComponent> XformQuery;
 
     protected HashSet<EntityUid> Intersecting = new();
 
     public override void Initialize()
     {
         _job = new ConveyorJob(this);
+        _conveyorQuery = GetEntityQuery<ConveyorComponent>();
+        _conveyedQuery = GetEntityQuery<ConveyedComponent>();
+        PhysicsQuery = GetEntityQuery<PhysicsComponent>();
+        XformQuery = GetEntityQuery<TransformComponent>();
 
         UpdatesAfter.Add(typeof(SharedMoverController));
 
@@ -162,15 +164,7 @@ public abstract class SharedConveyorController : VirtualController
 
             if (ent.Result)
             {
-                if (targetDir.LengthSquared() > 0f)
-                {
-                    SetConveying(ent.Entity.Owner, ent.Entity.Comp1, true);
-                }
-                else if (ent.Entity.Comp1.Conveying)
-                {
-                    SetConveying(ent.Entity.Owner, ent.Entity.Comp1, false);
-                    _stack.TryMergeToContacts(ent.Entity.Owner);
-                }
+                SetConveying(ent.Entity.Owner, ent.Entity.Comp1, targetDir.LengthSquared() > 0f);
 
                 // We apply friction here so when we push items towards the center of the conveyor they don't go overspeed.
                 // We also don't want this to apply to mobs as they apply their own friction and otherwise

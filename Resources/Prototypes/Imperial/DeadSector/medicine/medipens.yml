@@ -15,12 +15,9 @@
     maxFillLevels: 1
     changeColor: false
     emptySpriteName: antirad_empty
-  - type: Injector
+  - type: Hypospray
     solutionName: pen
-    currentTransferAmount: 6
-    activeModeProtoId: HyposprayInjectMode
-    allowedModes:
-    - HyposprayInjectMode
+    transferAmount: 6
   - type: SolutionContainerManager
     solutions:
       pen:

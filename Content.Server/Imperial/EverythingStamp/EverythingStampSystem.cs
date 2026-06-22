@@ -3,15 +3,16 @@ using Content.Shared.Interaction;
 using Content.Shared.Paper;
 using Robust.Shared.Audio.Systems;
 using Content.Shared.Popups;
+using Microsoft.CodeAnalysis.Elfie.Diagnostics;
 
 namespace Content.Server.Paper
 {
     public sealed class EverythingStampSystem : EntitySystem
     {
         [Dependency] private readonly SharedAudioSystem _audio = default!;
-        [Dependency] private readonly SharedPopupSystem _popup = default!;
-
-
+        [Dependency] protected readonly ILocalizationManager Loc = default!;
+        [Dependency] private readonly IEntityManager _entities = default!;
+        [Dependency] protected readonly SharedPopupSystem Popup = default!;
         public override void Initialize()
         {
             base.Initialize();
@@ -34,7 +35,7 @@ namespace Content.Server.Paper
             });
             positionOfPreviousMode = positionOfPreviousMode == entity.Comp.CollectedStamps.Count - 1 ? -1 : positionOfPreviousMode;
             entity.Comp.CurrentStampName = entity.Comp.CollectedStamps[positionOfPreviousMode + 1].StampedName;
-            _popup.PopupEntity(Loc.GetString("everything-stamp-chosen-stamp") + " " + Loc.GetString(entity.Comp.CollectedStamps[positionOfPreviousMode + 1].StampedName), entity, args.User);
+            Popup.PopupEntity(Loc.GetString("everything-stamp-chosen-stamp") + " " + Loc.GetString(entity.Comp.CollectedStamps[positionOfPreviousMode + 1].StampedName), entity, args.User);
             if (TryComp(entity, out StampComponent? stamp))
             {
                 stamp.StampedName = entity.Comp.CollectedStamps[positionOfPreviousMode + 1].StampedName;
@@ -49,11 +50,11 @@ namespace Content.Server.Paper
             if (!TryCopyStamp(uid, GetStampInfo(stampComp), stampComp.StampState, everythingStampComp))
             {
                 _audio.PlayPvs(stampComp.Sound, uid);
-                _popup.PopupEntity(Loc.GetString("everything-stamp-new-stamp-added"), uid, args.User);
+                Popup.PopupEntity(Loc.GetString("everything-stamp-new-stamp-added"), uid, args.User);
             }
             else
             {
-                _popup.PopupEntity(Loc.GetString("everything-stamp-new-stamp-already-added"), uid, args.User);
+                Popup.PopupEntity(Loc.GetString("everything-stamp-new-stamp-already-added"), uid, args.User);
             }
         }
         private static StampDisplayInfo GetStampInfo(StampComponent stamp)

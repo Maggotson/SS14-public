@@ -255,7 +255,7 @@
         - to: TableFancyBlack
           steps:
             - tag: CarpetBlack
-              name: recipes-black-carpet-name
+              name: черный ковер # Imperial Recipes Locale
               icon:
                 sprite: Objects/Tiles/tile.rsi
                 state: carpet-black
@@ -263,7 +263,7 @@
         - to: TableFancyBlue
           steps:
             - tag: CarpetBlue
-              name: recipes-blue-carpet-name
+              name: синий ковер # Imperial Recipes Locale
               icon:
                 sprite: Objects/Tiles/tile.rsi
                 state: carpet-blue
@@ -273,25 +273,10 @@
             - material: FloorCarpetSkyBlue
               amount: 1
 
-        - to: TableFancySkyBlue
-          steps:
-            - material: FloorCarpetSkyBlue
-              amount: 1
-
-        - to: TableFancySkyBlue
-          steps:
-            - material: FloorCarpetSkyBlue
-              amount: 1
-
-        - to: TableFancySkyBlue
-          steps:
-            - material: FloorCarpetSkyBlue
-              amount: 1
-
         - to: TableFancyCyan
           steps:
             - tag: CarpetCyan
-              name: recipes-cyan-carpet-name
+              name: голубой ковер # Imperial Recipes Locale
               icon:
                 sprite: Objects/Tiles/tile.rsi
                 state: carpet-cyan
@@ -299,7 +284,7 @@
         - to: TableFancyGreen
           steps:
             - tag: CarpetGreen
-              name: recipes-green-carpet-name
+              name: зеленый ковер # Imperial Recipes Locale
               icon:
                 sprite: Objects/Tiles/tile.rsi
                 state: carpet-green
@@ -307,7 +292,7 @@
         - to: TableFancyOrange
           steps:
             - tag: CarpetOrange
-              name: recipes-orange-carpet-name
+              name: оранжевый ковер # Imperial Recipes Locale
               icon:
                 sprite: Objects/Tiles/tile.rsi
                 state: carpet-orange
@@ -315,7 +300,7 @@
         - to: TableFancyPurple
           steps:
             - tag: CarpetPurple
-              name: recipes-purple-carpet-name
+              name: фиолетовый ковер # Imperial Recipes Locale
               icon:
                 sprite: Objects/Tiles/tile.rsi
                 state: carpet-purple
@@ -323,7 +308,7 @@
         - to: TableFancyPink
           steps:
             - tag: CarpetPink
-              name: recipes-pink-carpet-name
+              name: розовый ковер # Imperial Recipes Locale
               icon:
                 sprite: Objects/Tiles/tile.rsi
                 state: carpet-pink
@@ -331,7 +316,7 @@
         - to: TableFancyRed
           steps:
             - tag: CarpetRed
-              name: recipes-red-carpet-name
+              name: красный ковер # Imperial Recipes Locale
               icon:
                 sprite: Objects/Tiles/tile.rsi
                 state: carpet-red
@@ -339,7 +324,7 @@
         - to: TableFancyWhite
           steps:
             - tag: CarpetWhite
-              name: recipes-white-carpet-name
+              name: белый ковер # Imperial Recipes Locale
               icon:
                 sprite: Objects/Tiles/tile.rsi
                 state: carpet-white

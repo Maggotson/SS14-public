@@ -38,8 +38,6 @@ public abstract class SharedAnomalySystem : EntitySystem
     [Dependency] private readonly SharedTransformSystem _transform = default!;
     [Dependency] private readonly SharedMapSystem _map = default!;
 
-    [Dependency] private readonly EntityQuery<PhysicsComponent> _physQuery = default!;
-
     public override void Initialize()
     {
         base.Initialize();
@@ -411,6 +409,7 @@ public abstract class SharedAnomalySystem : EntitySystem
         if (tilerefs.Count == 0)
             return null;
 
+        var physQuery = GetEntityQuery<PhysicsComponent>();
         var resultList = new List<TileRef>();
         while (resultList.Count < amount)
         {
@@ -432,13 +431,10 @@ public abstract class SharedAnomalySystem : EntitySystem
 
             if (!settings.CanSpawnOnEntities)
             {
-                // If it can't spawn on entities, ensure that maximum one entity will be spawned here this pulse.
-                tilerefs.Remove(tileref);
-
                 var valid = true;
                 foreach (var ent in _map.GetAnchoredEntities(xform.GridUid.Value, grid, tileref.GridIndices))
                 {
-                    if (!_physQuery.TryGetComponent(ent, out var body))
+                    if (!physQuery.TryGetComponent(ent, out var body))
                         continue;
 
                     if (body.BodyType != BodyType.Static ||
@@ -451,6 +447,7 @@ public abstract class SharedAnomalySystem : EntitySystem
                 }
                 if (!valid)
                 {
+                    tilerefs.Remove(tileref);
                     continue;
                 }
             }
@@ -489,7 +486,7 @@ public abstract class SharedAnomalySystem : EntitySystem
 }
 
 [DataRecord]
-public partial record struct AnomalySpawnSettings()
+public record struct AnomalySpawnSettings()
 {
     /// <summary>
     /// should entities block spawning?

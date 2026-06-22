@@ -137,13 +137,12 @@ namespace Content.Server.RoundEnd
         /// <summary>
         /// Starts the process of ending the round by calling evac
         /// </summary>
-        /// <param name="requester">who called evac</param>
-        /// <param name="machine">machine used to call evac</param>
+        /// <param name="requester"></param>
         /// <param name="checkCooldown"></param>
         /// <param name="text">text in the announcement of shuttle calling</param>
         /// <param name="name">name in the announcement of shuttle calling</param>
         /// <param name="cantRecall">if the station shouldn't be able to recall the shuttle</param>
-        public void RequestRoundEnd(EntityUid? requester = null, EntityUid? machine = null, bool checkCooldown = true, string text = "round-end-system-shuttle-called-announcement", string name = "round-end-system-shuttle-sender-announcement", bool cantRecall = false)
+        public void RequestRoundEnd(EntityUid? requester = null, bool checkCooldown = true, string text = "round-end-system-shuttle-called-announcement", string name = "round-end-system-shuttle-sender-announcement", bool cantRecall = false)
         {
             var duration = DefaultCountdownDuration;
 
@@ -158,20 +157,19 @@ namespace Content.Server.RoundEnd
                 }
             }
 
-            RequestRoundEnd(duration, requester, machine, checkCooldown, text, name, cantRecall);
+            RequestRoundEnd(duration, requester, checkCooldown, text, name, cantRecall);
         }
 
         /// <summary>
         /// Starts the process of ending the round by calling evac
         /// </summary>
         /// <param name="countdownTime">time for evac to arrive</param>
-        /// <param name="requester">who called evac</param>
-        /// <param name="machine">machine used to call evac</param>
+        /// <param name="requester"></param>
         /// <param name="checkCooldown"></param>
         /// <param name="text">text in the announcement of shuttle calling</param>
         /// <param name="name">name in the announcement of shuttle calling</param>
         /// <param name="cantRecall">if the station shouldn't be able to recall the shuttle</param>
-        public void RequestRoundEnd(TimeSpan countdownTime, EntityUid? requester = null, EntityUid? machine = null, bool checkCooldown = true, string text = "round-end-system-shuttle-called-announcement", string name = "round-end-system-shuttle-sender-announcement", bool cantRecall = false)
+        public void RequestRoundEnd(TimeSpan countdownTime, EntityUid? requester = null, bool checkCooldown = true, string text = "round-end-system-shuttle-called-announcement", string name = "round-end-system-shuttle-sender-announcement", bool cantRecall = false)
         {
             if (_gameTicker.RunLevel != GameRunLevel.InRound)
                 return;
@@ -185,11 +183,14 @@ namespace Content.Server.RoundEnd
             _countdownTokenSource = new();
             CantRecall = cantRecall;
 
-            var what = machine != null ? $" with {ToPrettyString(machine.Value):entity} " : "";
             if (requester != null)
-                _adminLogger.Add(LogType.ShuttleCalled, LogImpact.High, $"Shuttle called by {ToPrettyString(requester.Value):player}{what}");
+            {
+                _adminLogger.Add(LogType.ShuttleCalled, LogImpact.High, $"Shuttle called by {ToPrettyString(requester.Value):user}");
+            }
             else
-                _adminLogger.Add(LogType.ShuttleCalled, LogImpact.High, $"Shuttle called{what}");
+            {
+                _adminLogger.Add(LogType.ShuttleCalled, LogImpact.High, $"Shuttle called");
+            }
 
             // I originally had these set up here but somehow time gets passed as 0 to Loc so IDEK.
             int time;
@@ -241,7 +242,7 @@ namespace Content.Server.RoundEnd
             }
         }
 
-        public void CancelRoundEndCountdown(EntityUid? requester = null, EntityUid? machine = null, bool forceRecall = false)
+        public void CancelRoundEndCountdown(EntityUid? requester = null, bool forceRecall = false)
         {
             if (_gameTicker.RunLevel != GameRunLevel.InRound)
                 return;
@@ -255,11 +256,14 @@ namespace Content.Server.RoundEnd
             _countdownTokenSource.Cancel();
             _countdownTokenSource = null;
 
-            var what = machine != null ? $" with {ToPrettyString(machine.Value):entity} " : "";
             if (requester != null)
-                _adminLogger.Add(LogType.ShuttleRecalled, LogImpact.High, $"Shuttle recalled by {ToPrettyString(requester.Value):player}{what}");
+            {
+                _adminLogger.Add(LogType.ShuttleRecalled, LogImpact.High, $"Shuttle recalled by {ToPrettyString(requester.Value):user}");
+            }
             else
-                _adminLogger.Add(LogType.ShuttleRecalled, LogImpact.High, $"Shuttle recalled{what}");
+            {
+                _adminLogger.Add(LogType.ShuttleRecalled, LogImpact.High, $"Shuttle recalled");
+            }
 
             _chatSystem.DispatchGlobalAnnouncement(Loc.GetString("round-end-system-shuttle-recalled-announcement"),
                 Loc.GetString("round-end-system-shuttle-sender-announcement"), false, colorOverride: Color.Gold);
@@ -316,7 +320,7 @@ namespace Content.Server.RoundEnd
                 Loc.GetString(
                     "round-end-system-round-restart-eta-announcement",
                     ("time", time),
-                    ("units", Loc.GetString(unitsLocString, ("amount", time)))));
+                    ("units", Loc.GetString(unitsLocString))));
             Timer.Spawn(countdownTime.Value, AfterEndRoundRestart, _countdownTokenSource.Token);
         }
 
@@ -349,8 +353,8 @@ namespace Content.Server.RoundEnd
                     }
                     else
                     {
-                        RequestRoundEnd(time, checkCooldown: false, text: textCall,
-                            name: Loc.GetString(sender));
+                        RequestRoundEnd(time, null, false, textCall,
+                            Loc.GetString(sender));
                     }
                     break;
             }
@@ -386,7 +390,7 @@ namespace Content.Server.RoundEnd
             {
                 if (!_shuttle.EmergencyShuttleArrived && ExpectedCountdownEnd is null)
                 {
-                    RequestRoundEnd(checkCooldown: false, text: "round-end-system-shuttle-auto-called-announcement");
+                    RequestRoundEnd(null, false, "round-end-system-shuttle-auto-called-announcement");
                     _autoCalledBefore = true;
                 }
 

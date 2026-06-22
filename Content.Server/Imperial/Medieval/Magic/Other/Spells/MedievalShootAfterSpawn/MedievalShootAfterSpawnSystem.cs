@@ -33,7 +33,8 @@ public sealed partial class MedievalShootAfterSpawnSystem : EntitySystem
 
             _gunSystem.AttemptShoot(
                 uid,
-                (uid, gunComponent),
+                uid,
+                gunComponent,
                 CoordsHelper.GetCoords(component.Target, EntityManager)
             );
         }

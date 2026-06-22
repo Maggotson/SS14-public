@@ -22,7 +22,7 @@
     - AnomalyFlora
     - AnomalyShadow
     - AnomalyTech
-    # - AnomalySanta | Imperial Space / Нового года не будет...
+    - AnomalySanta
     rareChance: 0.3
     rarePrototypes:
     - RandomAnomalyInjectorSpawner
@@ -72,5 +72,5 @@
     - AnomalyTrapGravity
     - AnomalyTrapTech
     - AnomalyTrapRock
-    # - AnomalyTrapSanta | Imperial Space / Нового года не будет...
+    - AnomalyTrapSanta
     chance: 1

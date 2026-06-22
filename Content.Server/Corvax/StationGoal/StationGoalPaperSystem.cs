@@ -43,15 +43,14 @@ namespace Content.Server.Corvax.StationGoal
         //<returns>True if at least one fax received paper</returns>
         public bool SendStationGoal(StationGoalPrototype goal)
         {
-            var enumerator = EntityQueryEnumerator<FaxMachineComponent>();
+            var faxes = EntityManager.EntityQuery<FaxMachineComponent>();
             var wasSent = false;
             var funny = new StampDisplayInfo() { StampedName = Loc.GetString("stamp-component-stamped-name-centcom"), StampedColor = Color.FromHex("#006600") };
             var list = new List<StampDisplayInfo>();
             list.Add(funny);
-
-            while (enumerator.MoveNext(out var fax, out var faxComponent))
+            foreach (var fax in faxes)
             {
-                if (!faxComponent.ReceiveStationGoal) continue;
+                if (!fax.ReceiveStationGoal) continue;
 
                 var printout = new FaxPrintout(
                     Loc.GetString(goal.Text),
@@ -61,7 +60,7 @@ namespace Content.Server.Corvax.StationGoal
                     "paper_stamp-centcom",
                     list
                 );
-                _faxSystem.Receive(fax, printout, null, faxComponent);
+                _faxSystem.Receive(fax.Owner, printout, null, fax);
 
                 wasSent = true;
             }

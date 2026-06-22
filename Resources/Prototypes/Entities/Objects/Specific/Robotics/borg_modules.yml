@@ -453,23 +453,6 @@
 
 # generic modules
 - type: entity
-  id: BorgModulePrying
-  parent: [ BaseBorgModule ]
-  name: prying module
-  description: A universal cyborg module which allows the unit to pry open doors.
-  components:
-  - type: Sprite
-    layers:
-    - state: generic
-    - state: icon-tools
-  - type: ComponentBorgModule
-    components:
-    - type: Prying
-      speedModifier: 1.5
-      useSound:
-        path: /Audio/Items/jaws_pry.ogg
-
-- type: entity
   id: BorgModuleCable
   parent: [ BaseBorgModule, BaseProviderBorgModule ]
   name: cable cyborg module
@@ -735,6 +718,7 @@
           components:
           - Circuitboard
           - MachineBoard # Imperial Space Добавлена возможность брать любые платы
+          - BorgEngElectronicsBoard
         blacklist:
           components:
           - SiliconLawProvider
@@ -829,7 +813,6 @@
   - type: ItemBorgModule
     hands:
     - item: MopItem
-    - item: WireBrush
     - item: BorgBucket
     - item: BorgSprayBottle
     - item: HoloprojectorBorg
@@ -852,7 +835,6 @@
     - item: BorgMopItem # Imperial Space Кастомная швабра для борга
     - item: TrashBagBorg # Imperial Space Кастомный мешок для мусора для наших боргов
     - item: AdvMopItem
-    - item: WireBrushElectrical
     - item: BorgMegaSprayBottle
     - item: HoloprojectorBorg
     - item: BorgDropper
@@ -878,7 +860,7 @@
     - state: icon-diagnosis
   - type: ItemBorgModule
     hands:
-    - item: HandheldHealthAnalyzer
+    - item: HandheldHealthAnalyzerUnpowered
     - item: ClothingNeckStethoscope
   - type: BorgModuleIcon
     icon: { sprite: Interface/Actions/actions_borg.rsi, state: diagnosis-module }
@@ -886,7 +868,7 @@
 - type: entity
   id: BorgModuleTopicals
   parent: [ BaseBorgModuleMedical, BaseProviderBorgModule ]
-  name: first aid cyborg module
+  name: topicals cyborg module
   components:
   - type: Sprite
     layers:
@@ -894,8 +876,7 @@
     - state: icon-treatment
   - type: ItemBorgModule
     hands:
-    - item: HandheldHealthAnalyzer
-    - item: AdvancedJetInjector
+    - item: HandheldHealthAnalyzerUnpowered
     - item: Gauze
       hand:
         emptyLabel: borg-slot-topicals-empty
@@ -914,6 +895,13 @@
       hand:
         emptyLabel: borg-slot-topicals-empty
         emptyRepresentative: Ointment
+        whitelist:
+          components:
+          - Healing
+    - item: Bloodpack
+      hand:
+        emptyLabel: borg-slot-topicals-empty
+        emptyRepresentative: Bloodpack
         whitelist:
           components:
           - Healing
@@ -931,11 +919,11 @@
     - state: icon-defib
   - type: ItemBorgModule
     hands:
-    - item: HandheldHealthAnalyzer
+    - item: HandheldHealthAnalyzerUnpowered
     - item: DefibrillatorOneHandedUnpowered
-    - item: Crowbar
     - item: BorgFireExtinguisher
     - item: BorgHandheldGPSBasic
+    - item: HandLabeler
   - type: BorgModuleIcon
     icon: { sprite: Interface/Actions/actions_borg.rsi, state: defib-module }
 
@@ -947,87 +935,81 @@
   - type: Sprite
     layers:
     - state: medical
-    - state: icon-chemist
+    - state: icon-chem
   - type: ItemBorgModule
     hands:
-    - item: HandLabeler
+    - item: HandheldHealthAnalyzerUnpowered
     - item: Syringe
-      hand:
-        emptyLabel: borg-slot-injector-dropper-empty
-        emptyRepresentative: Syringe
-        whitelist:
-          tags:
-          - Dropper
-          - Syringe
-    - item: PillCanister
+    - item: BorgDropper
+    - item: BaseChemistryEmptyVial
       hand:
         emptyLabel: borg-slot-small-containers-empty
-        emptyRepresentative: PillCanister
-        whitelist:
-          tags:
-          - PillCanister
-          - Bottle
-          - Pill
-    - item: Beaker
-      hand:
-        emptyLabel: borg-slot-chemical-containers-empty
-        emptyRepresentative: Beaker
+        emptyRepresentative: BaseChemistryEmptyVial
         whitelist:
           components:
           - FitsInDispenser
-          tags:
-          - ChemDispensable
-    - item: Beaker
+    - item: BaseChemistryEmptyVial
       hand:
-        emptyLabel: borg-slot-chemical-containers-empty
-        emptyRepresentative: Beaker
+        emptyLabel: borg-slot-small-containers-empty
+        emptyRepresentative: BaseChemistryEmptyVial
         whitelist:
           components:
           - FitsInDispenser
-          tags:
-          - ChemDispensable
+    - item: BaseChemistryEmptyVial
+      hand:
+        emptyLabel: borg-slot-small-containers-empty
+        emptyRepresentative: BaseChemistryEmptyVial
+        whitelist:
+          components:
+          - FitsInDispenser
   - type: BorgModuleIcon
     icon: { sprite: Interface/Actions/actions_borg.rsi, state: chem-module }
 
 - type: entity
-  id: BorgModuleAdvancedTopical
+  id: BorgModuleAdvancedChemical
   parent: [ BaseBorgModuleMedical, BaseProviderBorgModule ]
-  name: advanced first aid cyborg module
+  name: advanced chemical cyborg module
   description: Advanced medical module containing the cyborg adaptation of the highly coveted hypospray. Now your cyborgs can inject crew-harmers with chloral hydrate even faster!
   components:
   - type: Sprite
     layers:
     - state: medical
-    - state: icon-chem
+    - state: icon-chemist
   - type: ItemBorgModule
     hands:
-    - item: HandheldHealthAnalyzer
+    - item: HandheldHealthAnalyzerUnpowered
+    # - item: BorgHypo
     - item: Syringe
     # - item: BorgDropper
     #  Imperial Space Удалено в связи с ребалансом медицинского борга
     - item: HyposprayBorg
-    # - item: BorgHypos
-    - item: Gauze
-      hand:
-        emptyLabel: borg-slot-topicals-empty
-        emptyRepresentative: Gauze
-        whitelist:
-          components:
-          - Healing
-    - item: Brutepack
-      hand:
-        emptyLabel: borg-slot-topicals-empty
-        emptyRepresentative: Brutepack
-        whitelist:
-          components:
-          - Healing
-    - item: Ointment
-      hand:
-        emptyLabel: borg-slot-topicals-empty
-        emptyRepresentative: Ointment
-        whitelist:
-          components:
-          - Healing
+    # - item: Beaker
+    #   hand:
+    #     emptyLabel: borg-slot-chemical-containers-empty
+    #     emptyRepresentative: Beaker
+    #     whitelist:
+    #       components:
+    #       - FitsInDispenser
+    #       tags:
+    #       - ChemDispensable
+    # - item: Beaker
+    #   hand:
+    #     emptyLabel: borg-slot-chemical-containers-empty
+    #     emptyRepresentative: Beaker
+    #     whitelist:
+    #       components:
+    #       - FitsInDispenser
+    #       tags:
+    #       - ChemDispensable
+    # - item: Beaker
+    #   hand:
+    #     emptyLabel: borg-slot-chemical-containers-empty
+    #     emptyRepresentative: Beaker
+    #     whitelist:
+    #       components:
+    #       - FitsInDispenser
+    #       tags:
+    #       - ChemDispensable
     #  Imperial Space Удалено в связи с ребалансом медицинского борга
   - type: BorgModuleIcon
     icon: { sprite: Interface/Actions/actions_borg.rsi, state: adv-chem-module }
@@ -1049,10 +1031,10 @@
     - item: SprayBottle
     - item: GasAnalyzer
     - item: BorgDropper
-    - item: ChemistryEmptyVial
+    - item: BaseChemistryEmptyVial
       hand:
         emptyLabel: borg-slot-small-containers-empty
-        emptyRepresentative: ChemistryEmptyVial
+        emptyRepresentative: BaseChemistryEmptyVial
         whitelist:
           components:
           - FitsInDispenser
@@ -1532,40 +1514,6 @@
     icon: { sprite: Interface/Actions/actions_borg.rsi, state: xenoborg-extinguisher-module }
 
 - type: entity
-  parent: [ BaseXenoborgModuleEngi, BaseProviderBorgModule, BaseXenoborgContraband ]
-  id: XenoborgModuleDoorControl
-  name: door control xenoborg module
-  description: Module that allows Xenoborgs to control airlocks.
-  components:
-  - type: Sprite
-    layers:
-    - state: xenoborg_engi
-    - state: icon-xenoborg-access-breaker
-  - type: ItemBorgModule
-    hands:
-    - item: DoorRemoteXenoborg
-    - item: AccessBreaker
-    - item: AccessConfiguratorXenoborg
-  - type: BorgModuleIcon
-    icon: { sprite: Interface/Actions/actions_borg.rsi, state: xenoborg-door-remote-module }
-
-- type: entity
-  parent: [ BaseXenoborgModuleEngi, BaseProviderBorgModule, BaseXenoborgContraband ]
-  id: XenoborgModuleTileGun
-  name: tile gun xenoborg module
-  description: Module with a tile gun. wait, a what?
-  components:
-  - type: Sprite
-    layers:
-    - state: xenoborg_engi
-    - state: icon-xenoborg-tile
-  - type: ItemBorgModule
-    hands:
-    - item: WeaponTileGun
-  - type: BorgModuleIcon
-    icon: { sprite: Interface/Actions/actions_borg.rsi, state: xenoborg-tile-module }
-
-- type: entity
   parent: [ BaseXenoborgModuleHeavy, BaseProviderBorgModule, BaseXenoborgContraband ]
   id: XenoborgModuleJammer
   name: jammer xenoborg module
@@ -1593,15 +1541,15 @@
     - state: icon-xenoborg-laser
   - type: ItemBorgModule
     hands:
-    - item: WeaponLaserGunXenoborg
+    - item: XenoborgLaserGun
   - type: BorgModuleIcon
     icon: { sprite: Interface/Actions/actions_borg.rsi, state: xenoborg-laser-module }
 
 - type: entity
   parent: [ BaseXenoborgModuleHeavy, BaseProviderBorgModule, BaseXenoborgContraband ]
   id: XenoborgModuleHeavyLaser
-  name: laser cannon xenoborg module
-  description: Module with a laser cannon.
+  name: heavy laser xenoborg module
+  description: Module with a heavy laser gun.
   components:
   - type: Sprite
     layers:
@@ -1609,7 +1557,7 @@
     - state: icon-xenoborg-laser2
   - type: ItemBorgModule
     hands:
-    - item: WeaponLaserCannonXenoborg
+    - item: XenoborgHeavyLaserGun
   - type: BorgModuleIcon
     icon: { sprite: Interface/Actions/actions_borg.rsi, state: xenoborg-laser2-module }
 
@@ -1635,26 +1583,9 @@
     icon: { sprite: Interface/Actions/actions_borg.rsi, state: xenoborg-space-movement-module }
 
 - type: entity
-  parent: [ BaseXenoborgModuleScout, BaseXenoborgContraband ]
-  id: XenoborgModuleJump
-  name: xenoborg jump module
-  description: Module that allows a xenoborg to jump forward.
-  components:
-  - type: ComponentBorgModule
-    components:
-    - type: JumpAbility
-      action: ActionJumpBoost
-      jumpDistance: 4
-      jumpSound: /Audio/Effects/stealthoff.ogg
-  - type: Sprite
-    layers:
-    - state: xenoborg_scout
-    - state: icon-xenoborg-jump
-
-- type: entity
   parent: [ BaseXenoborgModuleScout, BaseProviderBorgModule, BaseXenoborgContraband ]
   id: XenoborgModuleSword
-  name: knife xenoborg module
+  name: sword xenoborg module
   description: Module with a kukri knife.
   components:
   - type: Sprite
@@ -1671,7 +1602,7 @@
 - type: entity
   parent: [ BaseXenoborgModuleScout, BaseProviderBorgModule, BaseXenoborgContraband ]
   id: XenoborgModuleEnergySword
-  name: energy dagger xenoborg module
+  name: energy sword xenoborg module
   description: Module with an energy dagger.
   components:
   - type: Sprite
@@ -1713,7 +1644,7 @@
     - state: icon-xenoborg-projector
   - type: ItemBorgModule
     hands:
-    - item: ChameleonProjectorNoBattery
+    - item: ChameleonProjector
   - type: BorgModuleIcon
     icon: { sprite: Interface/Actions/actions_borg.rsi, state: xenoborg-projector-module }
 
@@ -1721,7 +1652,7 @@
   parent: [ BaseXenoborgModuleStealth, BaseProviderBorgModule, BaseXenoborgContraband ]
   id: XenoborgModuleCloakDevice
   name: cloaking device xenoborg module
-  description: Module with a device that allows xenoborgs to become semi-invisible for some time.
+  description: Module with a device that allows xenoborgs to become invisible for some time.
   components:
   - type: Sprite
     layers:
@@ -1736,8 +1667,8 @@
 - type: entity
   parent: [ BaseXenoborgModuleStealth, BaseProviderBorgModule, BaseXenoborgContraband ]
   id: XenoborgModuleSuperCloakDevice
-  name: invisibility device xenoborg module
-  description: Module with a device that allows xenoborgs to become truly invisible for a short amount of time.
+  name: cloaking device xenoborg module
+  description: Module with a device that allows xenoborgs to become truly invisible for less time.
   components:
   - type: Sprite
     layers:

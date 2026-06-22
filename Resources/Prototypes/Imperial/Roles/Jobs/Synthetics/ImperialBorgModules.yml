@@ -67,13 +67,8 @@
     solution: hypospray
   - type: ExaminableSolution
     solution: hypospray
-  - type: Injector
-    solutionName: hypospray
-    currentTransferAmount: 5
-    activeModeProtoId: HyposprayInjectMode
-    popupOnInjectFail: false # Impreial Space
-    allowedModes:
-    - HyposprayInjectMode
+  - type: Hypospray
+    onlyAffectsMobs: false
   - type: UseDelay
     delay: 0.5
   - type: StaticPrice
@@ -208,12 +203,8 @@
     solution: hypospray
   - type: ExaminableSolution
     solution: hypospray
-  - type: Injector
-    solutionName: hypospray
-    currentTransferAmount: 5
-    activeModeProtoId: HyposprayInjectMode
-    allowedModes:
-    - HyposprayInjectMode
+  - type: Hypospray
+    onlyAffectsMobs: false
   - type: UseDelay
     delay: 0.5
   - type: BorgHypo
@@ -260,7 +251,7 @@
     - state: icon-chemist
   - type: ItemBorgModule
     hands:
-    - item: HandheldHealthAnalyzer
+    - item: HandheldHealthAnalyzerUnpowered
 #    - Beaker  Imperial Space Удалено в связи с ребалансом медицинского борга
 #    - Beaker
 #    - BorgDropper
@@ -309,7 +300,7 @@
   id: WeaponDisablerBorg
   description: A stun baton for incapacitating people with. Actively harming with this is considered bad tone.
   components:
-  - type: BatterySelfRecharger
+  - type: PredictedBatterySelfRecharger
     autoRecharge: true
     autoRechargeRate: 50
 
@@ -319,7 +310,7 @@
   id: StunbatonBorg
   description: A stun baton for incapacitating people with. Actively harming with this is considered bad tone.
   components:
-  - type: BatterySelfRecharger
+  - type: PredictedBatterySelfRecharger
     autoRecharge: true
     autoRechargeRate: 50
 
@@ -371,7 +362,6 @@
   - type: ItemBorgModule
     hands:
     - item: WeaponLaserBorg
-    - item: CombatKnife
   - type: BorgModuleIcon
     icon: { sprite: Interface/Actions/actions_borg.rsi, state: security-borg-lethal }  #Надо заменить
   - type: Tag
@@ -534,7 +524,7 @@
   parent: WeaponTaser
   id: ErtBorgWeaponTaser
   components:
-    - type: BatterySelfRecharger
+    - type: PredictedBatterySelfRecharger
       autoRecharge: true
       autoRechargeRate: 15
 
@@ -559,7 +549,7 @@
   - type: Battery
     maxCharge: 200
     startingCharge: 200
-  - type: BatterySelfRecharger
+  - type: PredictedBatterySelfRecharger
     autoRecharge: true
     autoRechargeRate: 10
 
@@ -569,7 +559,7 @@
   id: ErtBorgWeaponDisablerSMG
   description: Advanced borg weapon that exhausts organic targets, weakening them until they collapse.
   components:
-    - type: BatterySelfRecharger
+    - type: PredictedBatterySelfRecharger
       autoRecharge: true
       autoRechargeRate: 10
 
@@ -601,7 +591,7 @@
   - type: BatteryAmmoProvider
     proto: PulseDeathSquad
     fireCost: 200
-  - type: BatterySelfRecharger
+  - type: PredictedBatterySelfRecharger
     autoRecharge: true
     autoRechargeRate: 45
   - type: Battery
@@ -672,7 +662,7 @@
   - type: Battery
     maxCharge: 35000
     startingCharge: 35000
-  - type: BatterySelfRecharger
+  - type: PredictedBatterySelfRecharger
     autoRecharge: true
     autoRechargeRate: 200
   - type: AmmoCounter
@@ -1045,12 +1035,8 @@
     solution: hypospray
   - type: ExaminableSolution
     solution: hypospray
-  - type: Injector
-    solutionName: hypospray
-    currentTransferAmount: 5
-    activeModeProtoId: HyposprayInjectMode
-    allowedModes:
-    - HyposprayInjectMode
+  - type: Hypospray
+    onlyAffectsMobs: false
   - type: UseDelay
     delay: 0.5
   - type: BorgHypo
@@ -1102,7 +1088,7 @@
     - state: icon-nanotrasen
   - type: ItemBorgModule
     hands:
-    - item: HandheldHealthAnalyzer
+    - item: HandheldHealthAnalyzerUnpowered
     - item: DefibrillatorOneHandedUnpowered
     - item: JawsOfLife
     - item: JetpackErtBorg
@@ -1124,7 +1110,7 @@
     - state: icon-nanotrasen
   - type: ItemBorgModule
     hands:
-    - item: HandheldHealthAnalyzer
+    - item: HandheldHealthAnalyzerUnpowered
     - item: HyposprayBorgErt
     - item: JetpackErtBorg
   - type: BorgModuleIcon
@@ -1151,7 +1137,7 @@
 
 - type: entity
   id: HandheldHealthAnalyzerErtBorg
-  parent: HandheldHealthAnalyzer
+  parent: HandheldHealthAnalyzerUnpowered
   name: ert borg health analyzer
   suffix: Always Powered
   description: A hand-held body scanner capable of distinguishing vital signs of the subject.
@@ -1307,9 +1293,9 @@
   - type: BatteryAmmoProvider
     proto: RedMediumLaser
     fireCost: 150
-  - type: BatterySelfRecharger
-    autoRechargeRate: 48
-    autoRechargePauseTime: 10
+  - type: PredictedBatterySelfRecharger
+    autoRecharge: true
+    autoRechargeRate: 50
   - type: MagazineVisuals
     magState: mag
     steps: 5

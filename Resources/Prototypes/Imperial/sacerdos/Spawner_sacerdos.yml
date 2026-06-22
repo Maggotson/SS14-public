@@ -10,6 +10,7 @@
         - sprite: Imperial/sacerdos/Resource_Sacerdos.rsi
           state: Sprite-0004
         - state: timed
+    - type: Timer
     - type: TimedSpawner
       prototypes:
         - Crystal_sacerdos
@@ -30,6 +31,7 @@
         - sprite: Imperial/sacerdos/Resource_Sacerdos.rsi
           state: Sprite-0012
         - state: timed
+    - type: Timer
     - type: TimedSpawner
       prototypes:
         - Crystal_sacerdos_0009
@@ -50,6 +52,7 @@
         - sprite: Imperial/sacerdos/Resource_Sacerdos.rsi
           state: Sprite-0008
         - state: timed
+    - type: Timer
     - type: TimedSpawner
       prototypes:
         - Crystal_sacerdos_0005

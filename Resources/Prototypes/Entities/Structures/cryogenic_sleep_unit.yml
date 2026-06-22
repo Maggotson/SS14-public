@@ -35,9 +35,6 @@
         density: 190
         mask:
         - TableMask
-        layer:
-        - BulletImpassable
-  - type: RequireProjectileTarget
   - type: DragInsertContainer
     containerId: storage
     entryDelay: 2

@@ -8,12 +8,13 @@ namespace Content.Shared.Nutrition.EntitySystems;
 public sealed class ExaminableHungerSystem : EntitySystem
 {
     [Dependency] private readonly HungerSystem _hunger = default!;
-
-    [Dependency] private readonly EntityQuery<HungerComponent> _hungerQuery = default!;
+    private EntityQuery<HungerComponent> _hungerQuery;
 
     public override void Initialize()
     {
         base.Initialize();
+
+        _hungerQuery = GetEntityQuery<HungerComponent>();
 
         SubscribeLocalEvent<ExaminableHungerComponent, ExaminedEvent>(OnExamine);
     }

@@ -13,12 +13,16 @@ public sealed class ProximityDetectionSystem : EntitySystem
     [Dependency] private readonly IGameTiming _timing = default!;
     [Dependency] private readonly ItemToggleSystem _toggle = default!;
 
+    private EntityQuery<TransformComponent> _xformQuery;
+
     public override void Initialize()
     {
         base.Initialize();
 
         SubscribeLocalEvent<ProximityDetectorComponent, MapInitEvent>(OnMapInit);
         SubscribeLocalEvent<ProximityDetectorComponent, ItemToggledEvent>(OnToggled);
+
+        _xformQuery = GetEntityQuery<TransformComponent>();
     }
 
     private void OnMapInit(Entity<ProximityDetectorComponent> ent, ref MapInitEvent args)
@@ -81,7 +85,7 @@ public sealed class ProximityDetectionSystem : EntitySystem
     {
         var component = detector.Comp;
 
-        if (!TryComp(detector, out TransformComponent? transform))
+        if (!_xformQuery.TryGetComponent(detector, out var transform))
             return;
 
         if (Deleted(component.Target))
@@ -94,7 +98,7 @@ public sealed class ProximityDetectionSystem : EntitySystem
 
         while (query.MoveNext(out var uid))
         {
-            if (!TryComp(uid, out TransformComponent? xForm))
+            if (!_xformQuery.TryGetComponent(uid, out var xForm))
                 continue;
 
             if (!transform.Coordinates.TryDistance(EntityManager, xForm.Coordinates, out var distance) ||

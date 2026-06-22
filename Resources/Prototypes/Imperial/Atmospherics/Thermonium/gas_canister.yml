@@ -39,7 +39,7 @@
         whitelist:
           components:
             - GasTank
-      air:
+      gasMixture:
         volume: 1500
         moles:
           Thermonium: 2769.36 # Thermonium

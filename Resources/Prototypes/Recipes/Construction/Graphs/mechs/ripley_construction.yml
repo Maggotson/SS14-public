@@ -37,7 +37,7 @@
           data: 4
 
       - tag: RipleyCentralControlModule
-        name: recipes-ripley-central-control-module-name
+        name: центральный модуль управления РИПЛИ # Imperial Recipes Locale
         icon:
           sprite: "Objects/Misc/module.rsi"
           state: "mainboard"
@@ -54,7 +54,7 @@
           data: 6
 
       - tag: RipleyPeripheralsControlModule
-        name: recipes-ripley-peripherals-control-module-name
+        name: модуль управления периферией РИПЛИ # Imperial Recipes Locale
         icon:
           sprite: "Objects/Misc/module.rsi"
           state: id_mod
@@ -74,7 +74,7 @@
 #currently mechs don't support upgrading. add them back in once that's squared away.
 
       - component: PowerCell
-        name: recipes-any-powercell-name
+        name: любую батарейку # Imperial Recipes Locale
         store: battery-container
         icon:
           sprite: Objects/Power/power_cells.rsi

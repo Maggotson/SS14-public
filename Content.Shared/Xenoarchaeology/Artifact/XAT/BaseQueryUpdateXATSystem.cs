@@ -8,7 +8,15 @@ namespace Content.Shared.Xenoarchaeology.Artifact.XAT;
 /// <typeparam name="T">Type of XAT component that system will work with.</typeparam>
 public abstract class BaseQueryUpdateXATSystem<T> : BaseXATSystem<T> where T : Component
 {
-    [Dependency] protected readonly EntityQuery<XenoArtifactComponent> _xenoArtifactQuery = default!;
+    protected EntityQuery<XenoArtifactComponent> _xenoArtifactQuery;
+
+    /// <inheritdoc />
+    public override void Initialize()
+    {
+        base.Initialize();
+
+        _xenoArtifactQuery = GetEntityQuery<XenoArtifactComponent>();
+    }
 
     /// <inheritdoc />
     public override void Update(float frameTime)

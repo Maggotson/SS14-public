@@ -1,7 +1,7 @@
 ﻿- type: entity
   name: basic slime
   id: BaseMobAdultSlimes
-  parent: [ BaseMobSlimes, SimpleMobBase, MobCombat ]
+  parent: [ SimpleMobBase, MobCombat ]
   abstract: true
   description: It looks so much like jelly. I wonder what it tastes like?
   components:
@@ -53,10 +53,10 @@
     damageContainer: Biological
     damageModifierSet: Slime
   - type: Bloodstream
-    bloodReferenceSolution:
+    bloodReagents:
       reagents:
       - ReagentId: Slime
-        Quantity: 150
+        Quantity: 1
     bloodlossDamage:
       types:
         Bloodloss:
@@ -89,6 +89,9 @@
         type: Local
         messages: [ "slime-hurt-by-water-popup" ]
         probability: 0.25
+  - type: Body
+    prototype: Slimes
+    requiredLegs: 1
   - type: MeleeWeapon
     altDisarm: false
     soundHit:
@@ -135,7 +138,7 @@
     proto: slime
   - type: NpcFactionMember
     factions:
-    - SimpleNeutral
+    - Passive ##Замена фракции, чтобы не абузить нейтральность фракции против агрессивных мобов
   - type: HTN
     rootTask:
       task: SimpleHostileCompound

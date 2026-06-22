@@ -1,5 +1,0 @@
-- type: entity
-  parent: BaseGenerator
-  id: Generator079
-  components:
-  - type: NDA079Generator

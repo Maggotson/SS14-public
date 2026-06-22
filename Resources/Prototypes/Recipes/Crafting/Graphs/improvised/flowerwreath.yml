@@ -7,17 +7,17 @@
         - to: flowerwreath
           steps:
             - tag: Flower
-              name: recipes-flower-name
+              name: цветок # Imperial Recipes Locale
               icon:
                 sprite: Objects/Specific/Hydroponics/poppy.rsi
                 state: produce
             - tag: Flower
-              name: recipes-flower-name
+              name: цветок # Imperial Recipes Locale
               icon:
                 sprite: Objects/Specific/Hydroponics/poppy.rsi
                 state: produce
             - tag: Ambrosia
-              name: recipes-ambrosia-name
+              name: амброзия # Imperial Recipes Locale
               icon:
                 sprite: Objects/Specific/Hydroponics/ambrosia_vulgaris.rsi
                 state: produce

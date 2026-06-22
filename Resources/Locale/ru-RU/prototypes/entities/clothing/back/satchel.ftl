@@ -63,7 +63,7 @@ ent-ClothingBackpackDuffelSyndicateHardsuitExtrasBundle = красный вещ�
     .desc = Содержит что-то странное внутри.
 ent-ClothingBackpackDuffelSyndicateEliteHardsuitBundle = вещмешок с скафандром элиты синдиката
     .desc = Содержит скафандр элиты синдиката
-ent-OreBagOfHolding = блюспейс хранилище руды
+ent-OreBagOfHolding = Блюспейс хранилище руды
     .desc = Надежная сумка для утилей-миллиардерров и богатых шахтеров, способная перевозить большие объемы руды. Прикрепляемая к поясу, намагничивает любые близлежащие руды.
 
 ent-BaseSubfloorAnchorStorage = { "" }
@@ -91,5 +91,3 @@ ent-RandomSatchelSpawner = спавнер сумки контрабандист�
 ent-BorgOreBag = встроенная сумка для руды
     .desc = Большая сумка для руды, встроенная в корпус киборга.
     .suffix = Борги
-ent-ClothingBackpackSatchelNinja = сумка клана Паука
-    .desc = Профессиональная сумка для хранения вещей.

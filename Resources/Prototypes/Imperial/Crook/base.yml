@@ -7,12 +7,11 @@
   flavor: shocking
   color: "#4d7ee7"
   metabolisms:
-    Bloodstream:
+    Poison:
       effects:
       - !type:Jitter
         conditions:
-        - !type:ReagentCondition
-          reagent: AndroidBlood
+        - !type:TotalDamageCondition
           min: 5
         - !type:MetabolizerTypeCondition
           type: Android
@@ -25,56 +24,12 @@
           shouldHave: false
       - !type:HealthChange
         damage:
-          types:
-            Asphyxiation: 0.5
-            Bloodloss: 0.5
+          groups:
+            Airloss: 1
         conditions:
         - !type:MetabolizerTypeCondition
           type: Android
           shouldHave: false
-
-- type: entity
-  parent: BaseSpeciesAppearance
-  id: AppearanceAndroid
-  name: android appearance
-  components:
-  - type: Inventory
-    femaleDisplacements:
-      jumpsuit:
-        sizeMaps:
-          32:
-            sprite: Mobs/Species/Human/displacement.rsi
-            state: jumpsuit-female
-  - type: InitialBody
-    organs:
-      Torso: OrganHumanTorso
-      Head: OrganHumanHead
-      ArmLeft: OrganHumanArmLeft
-      ArmRight: OrganHumanArmRight
-      HandRight: OrganHumanHandRight
-      HandLeft: OrganHumanHandLeft
-      LegLeft: OrganHumanLegLeft
-      LegRight: OrganHumanLegRight
-      FootLeft: OrganHumanFootLeft
-      FootRight: OrganHumanFootRight
-      Brain: AndroidCore
-      Eyes: OrganHumanEyes
-  - type: HumanoidProfile
-    species: Human
-
-- type: species
-  id: Android
-  name: species-name-android
-  roundStart: false
-  prototype: MobMechanic
-  defaultSkinTone: "#b9b199"
-  dollPrototype: AppearanceAndroid
-  skinColoration: Hues
-  maleFirstNames: NamesFirstMale
-  femaleFirstNames: NamesFirstFemale
-  lastNames: NamesLast
-  sexes:
-  - Unsexed
 
 - type: metabolizerType
   id: Android
@@ -119,23 +74,60 @@
           - ReagentId: AndroidBlood
             Quantity: 10
 
+- type: body
+  id: Android
+  name: "android"
+  root: torso
+  slots:
+    head:
+      part: HeadHuman
+      connections:
+      - torso
+    torso:
+      part: TorsoHuman
+      connections:
+      - right_arm
+      - left_arm
+      - right_leg
+      - left_leg
+      organs:
+        core: AndroidCore
+    right_arm:
+      part: RightArmHuman
+      connections:
+      - right_hand
+    left_arm:
+      part: LeftArmHuman
+      connections:
+      - left_hand
+    right_hand:
+      part: RightHandHuman
+    left_hand:
+      part: LeftHandHuman
+    right_leg:
+      part: RightLegHuman
+      connections:
+      - right_foot
+    left_leg:
+      part: LeftLegHuman
+      connections:
+      - left_foot
+    right_foot:
+      part: RightFootHuman
+    left_foot:
+      part: LeftFootHuman
+
 - type: entity
   save: false
-  parent: [BaseSpeciesMob, AppearanceAndroid, MobBloodstream]
+  parent: [BaseMobSpecies, MobBloodstream]
   id: BaseMobMechanic
   abstract: true
   components:
+  - type: Body
+    prototype: Android
   - type: Bloodstream
-    bloodReferenceSolution:
-      reagents:
-      - ReagentId: AndroidBlood
-        Quantity: 150
-    bloodlossDamage:
-      types:
-        Bloodloss: 0.2
-    bloodlossHealDamage:
-      types:
-        Bloodloss: -1.2
+    bloodReagent: AndroidBlood
+    chemicalMaxVolume: 150
   - type: StatusEffects
     allowed:
     - Stun
@@ -228,6 +220,7 @@
     stunTime: 5
   - type: IonStormTarget
     chance: 1
+  - type: ShowJobIcons
   - type: ContainerFill
     containers:
       borg_brain:
@@ -249,6 +242,11 @@
       Female: UnisexSilicon
     wilhelmProbability: 0
   - type: UnblockableSpeech
+  - type: HumanoidAppearance
+    species: Human
+    hideLayersOnEquip:
+    - Hair
+    - Snout
   - type: WiresPanel
     openingTool: Prying
   - type: ActivatableUIRequiresPanel
@@ -285,6 +283,9 @@
         - borg_brain
       - !type:DoActsBehavior
         acts: [ "Destruction" ]
+  - type: Icon
+    sprite: Mobs/Species/Human/parts.rsi
+    state: full
   - type: Repairable
     fuelCost: 50
     doAfterDelay: 30
@@ -310,10 +311,6 @@
   - type: Access
     groups:
     - AllAccess
-  - type: ShowHealthBars
-  - type: ShowHealthIcons
-  - type: ShowJobIcons
-  - type: ShowMindShieldIcons
 
 - type: entity
   save: false

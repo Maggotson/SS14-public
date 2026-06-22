@@ -7,7 +7,7 @@
         - to: bananiumHorn
           steps:
             - tag: Pipe
-              name: recipes-pipe-name
+              name: труба # Imperial Recipes Locale
               icon:
                 sprite: Structures/Piping/Atmospherics/pipe.rsi
                 state: pipeStraight
@@ -16,7 +16,7 @@
               amount: 4
               doAfter: 1
             - tag: BikeHorn
-              name: recipes-bike-horn-name
+              name: велосипедный клаксон # Imperial Recipes Locale
               icon:
                 sprite: Objects/Fun/bikehorn.rsi
                 state: icon

@@ -56,6 +56,3 @@ ent-HandHeldMassScannerBorg = ручной сканер массы
 ent-HandHeldMassScannerEmpty = ручной сканер массы
     .desc = ручной сканер массы
     .suffix = Пустой
-ent-HijackBeacon = маяк угона
-    .desc = Устройство, позволяющее обходить брандмауэр на Торговых Аванпостах Nanotrasen.
-    .suffix = { "" }

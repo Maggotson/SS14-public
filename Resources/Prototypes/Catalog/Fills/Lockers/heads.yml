@@ -12,8 +12,6 @@
     - id: DoorRemoteCargo
     - id: AstroNavCartridge
     - id: ClothingHandsKnuckleDustersQM
-    - id: PlushieLizardJobQuartermaster
-      prob: 0.02
 
 - type: entity
   id: LockerQuarterMasterFilled
@@ -48,16 +46,10 @@
     - id: WeaponDisabler
     #- id: ClothingEyesGlassesCommand #Imperial Space убраны тк есть раундстартом на кепе
     - id: ControlModsuitMagnate # Imperial Space РИГИ
-#Imperial Space Energy Core start
-    - id: DeauthorizationFragmentStation
-    - id: PinpointerNuclearStationFragment
-#Imperial Space Energy Core end
-    - id: OrganSkeletonPersonHead # A skull to accompany your skeleton crew
+    - id: HeadSkeleton # A skull to accompany your skeleton crew
       conditions:
       - !type:PlayerCountCondition
         max: 15
-    - id: PlushieLizardJobCaptain
-      prob: 0.02
 
 # No laser table + Laser table
 - type: entityTable
@@ -139,8 +131,6 @@
     - id: HoPIDCard
     - id: WeaponDisabler
     - id: ClothingEyesHudCommand
-    - id: PlushieLizardJobHeadofpersonnel
-      prob: 0.02
 
 - type: entity
   id: LockerHeadOfPersonnelFilled
@@ -173,8 +163,6 @@
     - id: HandHeldAtmosAlertsMonitor # Imperial add
     - id: ControlModsuitAdvanced # Imperial Space РИГИ
     - id: MetalFoamGrenade
-    - id: PlushieLizardJobChiefengineer
-      prob: 0.02
 
 # Hardsuit table, used for suit storage as well
 - type: entityTable
@@ -218,19 +206,19 @@
   id: LockerFillChiefMedicalOfficerNoHardsuit
   table: !type:AllSelector
     children:
+    - id: BoxEncryptionKeyMedical
+    - id: ClothingBackpackDuffelSurgeryFilled
     - id: ClothingEyesHudMedical
-    - id: ClothingBeltMedicalFilled
+    - id: ClothingHandsGlovesNitrile
+    - id: ClothingHeadsetAltMedical
+    - id: ClothingMaskSterile
+    - id: DoorRemoteMedical
     - id: HandheldCrewMonitor
     - id: Hypospray
-    - id: MedTekCartridge
-    # Standard command gear
-    - id: RubberStampCMO
-    - id: ClothingHeadsetAltMedical
-    - id: DoorRemoteMedical
-    - id: BoxEncryptionKeyMedical
     - id: BoxCMOCircuitboards
-    - id: PlushieLizardJobChiefmedicalofficer
-      prob: 0.02
+    - id: MedkitFilled
+    - id: RubberStampCMO
+    - id: MedTekCartridge
     - id: CompactDefibrillator # Imperial Space Компактный дефибриллятор в шкафчике ГВ
     - id: ControlModsuitRescue # Imperial Space РИГИ
     - id: CloningConsoleComputerCircuitboard # Imperial Space Консоль клонирования возвращена в игру
@@ -285,8 +273,6 @@
     - id: DoorRemoteResearch
     - id: HandTeleporter
     - id: RubberStampRd
-    - id: PlushieLizardJobResearchdirector
-      prob: 0.02
 
 # Hardsuit table, used for suit storage as well
 - type: entityTable
@@ -349,8 +335,6 @@
     - id: HandHeldSecurityMonitor # Imperial add
     - id: DrinkHosFlask
     - id: ControlModsuitSafeguard # Imperial Space РИГИ
-    - id: PlushieLizardJobHeadofsecurity
-      prob: 0.02
 
 # Hardsuit table, used for suit storage as well
 - type: entityTable

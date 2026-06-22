@@ -1,11 +1,12 @@
 using System.Numerics;
+using Content.Shared.Body.Components;
+using Content.Shared.Body.Systems;
 using Content.Shared.Charges.Components;
 using Content.Shared.Charges.Systems;
 using Content.Shared.Coordinates.Helpers;
 using Content.Shared.Doors.Components;
 using Content.Shared.Doors.Systems;
 using Content.Shared.Examine;
-using Content.Shared.Gibbing;
 using Content.Shared.Hands.Components;
 using Content.Shared.Hands.EntitySystems;
 using Content.Shared.Interaction;
@@ -15,7 +16,6 @@ using Content.Shared.Magic.Components;
 using Content.Shared.Magic.Events;
 using Content.Shared.Maps;
 using Content.Shared.Mind;
-using Content.Shared.Objectives.Systems;
 using Content.Shared.Physics;
 using Content.Shared.Popups;
 using Content.Shared.Speech.Muting;
@@ -53,7 +53,7 @@ public abstract class SharedMagicSystem : EntitySystem
     [Dependency] private readonly SharedPhysicsSystem _physics = default!;
     [Dependency] private readonly SharedTransformSystem _transform = default!;
     [Dependency] private readonly INetManager _net = default!;
-    [Dependency] private readonly GibbingSystem _gibbing = default!;
+    [Dependency] private readonly SharedBodySystem _body = default!;
     [Dependency] private readonly EntityLookupSystem _lookup = default!;
     [Dependency] private readonly SharedDoorSystem _door = default!;
     [Dependency] private readonly InventorySystem _inventory = default!;
@@ -68,7 +68,6 @@ public abstract class SharedMagicSystem : EntitySystem
     [Dependency] private readonly TurfSystem _turf = default!;
     [Dependency] private readonly SharedChargesSystem _charges = default!;
     [Dependency] private readonly ExamineSystemShared _examine= default!;
-    [Dependency] private readonly TargetSystem _target = default!;
 
     private static readonly ProtoId<TagPrototype> InvalidForGlobalSpawnSpellTag = "InvalidForGlobalSpawnSpell";
 
@@ -270,13 +269,10 @@ public abstract class SharedMagicSystem : EntitySystem
     #region Projectile Spells
     private void OnProjectileSpell(ProjectileSpellEvent ev)
     {
-        if (ev.Handled || !PassesSpellPrerequisites(ev.Action, ev.Performer))
+        if (ev.Handled || !PassesSpellPrerequisites(ev.Action, ev.Performer) || !_net.IsServer)
             return;
 
         ev.Handled = true;
-
-        if (!_net.IsServer)
-            return; // client returns handled for predicted audio
 
         var xform = Transform(ev.Performer);
         var fromCoords = xform.Coordinates;
@@ -288,7 +284,7 @@ public abstract class SharedMagicSystem : EntitySystem
         var ent = Spawn(ev.Prototype, fromMap);
         var direction = _transform.ToMapCoordinates(toCoords).Position -
                          fromMap.Position;
-        _gunSystem.ShootProjectile(ent, direction, userVelocity, ev.Performer, ev.Performer, 25f);
+        _gunSystem.ShootProjectile(ent, direction, userVelocity, ev.Performer, ev.Performer);
     }
     // End Projectile Spells
     #endregion
@@ -394,7 +390,11 @@ public abstract class SharedMagicSystem : EntitySystem
         var impulseVector = direction * 10000;
 
         _physics.ApplyLinearImpulse(ev.Target, impulseVector);
-        _gibbing.Gib(ev.Target);
+
+        if (!TryComp<BodyComponent>(ev.Target, out var body))
+            return;
+
+        _body.GibBody(ev.Target, true, body);
     }
 
     // End Touch Spells
@@ -433,7 +433,7 @@ public abstract class SharedMagicSystem : EntitySystem
             if (TryComp<DoorComponent>(target, out var doorComp) && doorComp.State is not DoorState.Open)
                 _door.StartOpening(target);
 
-            if (TryComp<LockComponent>(target, out var lockComp) && lockComp.Locked && lockComp.BreakOnAccessBreaker)
+            if (TryComp<LockComponent>(target, out var lockComp) && lockComp.Locked)
                 _lock.Unlock(target, performer, lockComp);
         }
     }
@@ -461,7 +461,7 @@ public abstract class SharedMagicSystem : EntitySystem
             return;
 
         if (TryComp<BasicEntityAmmoProviderComponent>(wand, out var basicAmmoComp) && basicAmmoComp.Count != null)
-            _gunSystem.UpdateBasicEntityAmmoCount((wand.Value, basicAmmoComp), basicAmmoComp.Count.Value + ev.Charge);
+            _gunSystem.UpdateBasicEntityAmmoCount(wand.Value, basicAmmoComp.Count.Value + ev.Charge, basicAmmoComp);
         else if (TryComp<LimitedChargesComponent>(wand, out var charges))
             _charges.AddCharges((wand.Value, charges), ev.Charge);
     }
@@ -477,7 +477,7 @@ public abstract class SharedMagicSystem : EntitySystem
 
         ev.Handled = true;
 
-        var allHumans = _target.GetAliveHumans();
+        var allHumans = _mind.GetAliveHumans();
 
         foreach (var human in allHumans)
         {

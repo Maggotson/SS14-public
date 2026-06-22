@@ -10,37 +10,37 @@
               amount: 5
               doAfter: 1
             - tag: SuitEVA
-              name: recipes-outerclothing-EVA-name
+              name: скафандр EVA # Imperial Recipes Locale
               icon:
                 sprite: Clothing/OuterClothing/Suits/eva.rsi
                 state: icon
               doAfter: 1
             - tag: HelmetEVA
-              name: recipes-helmet-EVA-name
+              name: шлем скафандра EVA # Imperial Recipes Locale
               icon:
                 sprite: Clothing/Head/Helmets/eva.rsi
                 state: icon
               doAfter: 1
             - tag: CrayonPurple
-              name: recipes-purple-crayon-name
+              name: фиолетовый мелок # Imperial Recipes Locale
               icon:
                 sprite: Objects/Fun/crayons.rsi
                 state: purple
               doAfter: 1
             - tag: CrayonRed
-              name: recipes-red-crayon-name
+              name: красный мелок # Imperial Recipes Locale
               icon:
                 sprite: Objects/Fun/crayons.rsi
                 state: red
               doAfter: 1
             - tag: CrayonYellow
-              name: recipes-yellow-crayon-name
+              name: желтый мелок # Imperial Recipes Locale
               icon:
                 sprite: Objects/Fun/crayons.rsi
                 state: yellow
               doAfter: 1
             - tag: ClownRecorder
-              name: recipes-clown-recorder-name
+              name: клоунский диктофон # Imperial Recipes Locale
               icon:
                 sprite: Objects/Fun/clownrecorder.rsi
                 state: icon

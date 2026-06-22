@@ -1,7 +1,0 @@
-- type: radioChannel
-  id: VampireRadio
-  name: Вампир
-  keycode: 'в'
-  frequency: 5236
-  color: "#8B0000"
-  longRange: true

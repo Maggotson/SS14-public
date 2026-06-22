@@ -38,6 +38,7 @@ public sealed class NrpPardonCommand : IConsoleCommand
         }
 
         string target;
+        string reason;
 
         switch (args.Length)
         {

@@ -30,6 +30,8 @@ namespace Content.Shared.Stunnable;
 /// </summary>
 public abstract partial class SharedStunSystem
 {
+    private EntityQuery<CrawlerComponent> _crawlerQuery;
+
     [Dependency] private readonly EntityLookupSystem _entityLookup = default!;
     [Dependency] private readonly SharedHandsSystem _hands = default!;
     [Dependency] private readonly SharedPopupSystem _popup = default!;
@@ -37,13 +39,12 @@ public abstract partial class SharedStunSystem
     [Dependency] private readonly StandingStateSystem _standingState = default!;
     [Dependency] private readonly IConfigurationManager _cfgManager = default!;
 
-    [Dependency] private readonly EntityQuery<CrawlerComponent> _crawlerQuery = default!;
-    [Dependency] private readonly EntityQuery<FixturesComponent> _fixtureQuery = default!;
-
     public static readonly ProtoId<AlertPrototype> KnockdownAlert = "Knockdown";
 
     private void InitializeKnockdown()
     {
+        _crawlerQuery = GetEntityQuery<CrawlerComponent>();
+
         SubscribeLocalEvent<KnockedDownComponent, RejuvenateEvent>(OnRejuvenate);
 
         // Startup and Shutdown
@@ -464,14 +465,17 @@ public abstract partial class SharedStunSystem
         if (intersecting.Count == 0)
             return false;
 
+        var fixtureQuery = GetEntityQuery<FixturesComponent>();
+        var xformQuery = GetEntityQuery<TransformComponent>();
+
         var ourAABB = _entityLookup.GetAABBNoContainer(entity, entity.Comp.LocalPosition, entity.Comp.LocalRotation);
 
         foreach (var ent in intersecting)
         {
-            if (!_fixtureQuery.TryGetComponent(ent, out var fixtures))
+            if (!fixtureQuery.TryGetComponent(ent, out var fixtures))
                 continue;
 
-            if (!TryComp(ent, out TransformComponent? xformComp))
+            if (!xformQuery.TryComp(ent, out var xformComp))
                 continue;
 
             var xform = new Transform(xformComp.LocalPosition, xformComp.LocalRotation);

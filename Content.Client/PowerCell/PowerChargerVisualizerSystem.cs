@@ -5,6 +5,8 @@ namespace Content.Client.PowerCell;
 
 public sealed class PowerChargerVisualizerSystem : VisualizerSystem<PowerChargerVisualsComponent>
 {
+    [Dependency] private readonly SpriteSystem _sprite = default!;
+
     protected override void OnAppearanceChange(EntityUid uid, PowerChargerVisualsComponent comp, ref AppearanceChangeEvent args)
     {
         if (args.Sprite == null)

@@ -37,6 +37,8 @@
         whitelist:
           components:
           - BatteryAmmoProvider
+          - BatteryAmmoProvider
+          - BatteryAmmoProvider
         # Imperial "plasma Cutter + Advanced Version" Start
         # In order not to devalue charging with materials
         blacklist:

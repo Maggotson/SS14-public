@@ -19,11 +19,12 @@ public partial class MobStateSystem : EntitySystem
     [Dependency] private readonly DamageableSystem _damageable = default!;
     private ISawmill _sawmill = default!;
 
-    [Dependency] private readonly EntityQuery<MobStateComponent> _mobStateQuery = default!;
+    private EntityQuery<MobStateComponent> _mobStateQuery;
 
     public override void Initialize()
     {
         _sawmill = _logManager.GetSawmill("MobState");
+        _mobStateQuery = GetEntityQuery<MobStateComponent>();
         base.Initialize();
         SubscribeEvents();
     }

@@ -314,7 +314,16 @@ public sealed partial class ChatSystem : SharedChatSystem
         _adminLogger.Add(LogType.Chat, LogImpact.Low, $"Global station announcement from {sender}: {message}");
     }
 
-    /// <inheritdoc />
+    /// <summary>s
+    /// Dispatches an announcement to players selected by filter.
+    /// </summary>
+    /// <param name="filter">Filter to select players who will recieve the announcement</param>
+    /// <param name="message">The contents of the message</param>
+    /// <param name="source">The entity making the announcement (used to determine the station)</param>
+    /// <param name="sender">The sender (Communications Console in Communications Console Announcement)</param>
+    /// <param name="playDefaultSound">Play the announcement sound</param>
+    /// <param name="announcementSound">Sound to play</param>
+    /// <param name="colorOverride">Optional color for the announcement message</param>
     public override void DispatchFilteredAnnouncement(
         Filter filter,
         string message,
@@ -765,7 +774,7 @@ public sealed partial class ChatSystem : SharedChatSystem
     public string TransformSpeech(EntityUid sender, string message)
     {
         var ev = new TransformSpeechEvent(sender, message);
-        RaiseLocalEvent(sender, ev, true);
+        RaiseLocalEvent(ev);
 
         return ev.Message;
     }

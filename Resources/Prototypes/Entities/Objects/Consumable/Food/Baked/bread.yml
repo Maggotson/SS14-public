@@ -16,6 +16,7 @@
   - type: Tag
     tags:
     - Bread
+    - VoxFood
   - type: SolutionContainerManager
     solutions:
       food:
@@ -999,8 +1000,8 @@
       path: /Audio/Animals/dog_bark1.ogg
     hidden: true
     damage:
-      types:
-        Blunt: 1
+      groups:
+        Brute: 1
 
 - type: entity
   parent: FoodBreadBase

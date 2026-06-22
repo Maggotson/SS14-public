@@ -17,6 +17,7 @@
       behaviors:
         - !type:DoActsBehavior
           acts: [ "Destruction" ]
+  - type: Timer
   - type: TimedSpawner
     prototypes:
       - MobXeno

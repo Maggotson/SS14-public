@@ -65,12 +65,13 @@
     speedModifierThresholds:
       25: 0.5
   - type: Stamina
-    baseCritThreshold: 200
+    critThreshold: 200
   - type: Bloodstream
-    bloodReferenceSolution:
+    bloodReagents:
       reagents:
       - ReagentId: FluorosulfuricAcid
-        Quantity: 650
+        Quantity: 1
+    bloodMaxVolume: 650
   - type: MeleeWeapon
     altDisarm: false
     angle: 0
@@ -78,8 +79,8 @@
      collection: AlienClaw
     animation: WeaponArcBite
     damage:
-      types:
-        Piercing: 6
+      groups:
+        Brute: 6
   - type: DamageStateVisuals
     states:
       Alive:
@@ -94,15 +95,22 @@
     spawned:
     - id: FoodMeatXeno
       amount: 5
-  ### IMPERIAL: REMOVED GHOST ROLE
+  - type: GhostRole
+    allowMovement: true
+    allowSpeech: true
+    makeSentient: true
+    name: ghost-role-information-xeno-name
+    description: ghost-role-information-xeno-description
+    rules: ghost-role-information-xeno-rules
+    raffle:
+      settings: default
   - type: GhostTakeoverAvailable
   - type: TypingIndicator
     proto: alien
   - type: Temperature
-    currentTemperature: 310.15
-  - type: TemperatureDamage
     heatDamageThreshold: 360
     coldDamageThreshold: -150
+    currentTemperature: 310.15
   - type: Tag
     tags:
       - CannotSuicide
@@ -131,7 +139,7 @@
       0: Alive
       100: Dead
   - type: Stamina
-    baseCritThreshold: 300
+    critThreshold: 300
   - type: SlowOnDamage
     speedModifierThresholds:
       50: 0.7
@@ -152,15 +160,6 @@
   parent: MobXeno
   id: MobXenoDrone
   components:
-  ### Imperial genetics
-  - type: ContainerContainer
-    containers:
-      gene_entity_slot: !type:Container
-  - type: ContainerFill
-    containers:
-      gene_entity_slot:
-      - GeneSampleXenoDrone
-  ### Imperial genetics end
   - type: Sprite
     drawdepth: Mobs
     sprite: Mobs/Aliens/Xenos/drone.rsi
@@ -177,8 +176,8 @@
       40: 0.7
   - type: MeleeWeapon
     damage:
-      types:
-        Slash: 6
+      groups:
+        Brute: 6
   - type: MovementSpeedModifier
     baseSprintSpeed: 4
   - type: Fixtures
@@ -215,8 +214,8 @@
   - type: MovementSpeedModifier
   - type: MeleeWeapon
     damage:
-      types:
-        Slash: 12
+     groups:
+       Brute: 12
   - type: Fixtures
     fixtures:
       fix1:
@@ -252,8 +251,8 @@
     baseSprintSpeed: 4
   - type: MeleeWeapon
     damage:
-      types:
-        Slash: 10
+     groups:
+       Brute: 10
   - type: SlowOnDamage
     speedModifierThresholds:
       50: 0.7
@@ -285,8 +284,8 @@
     baseSprintSpeed: 6.0
   - type: MeleeWeapon
     damage:
-      types:
-        Slash: 5
+     groups:
+       Brute: 5
   - type: Fixtures
     fixtures:
       fix1:
@@ -319,15 +318,6 @@
   parent: MobXeno
   id: MobXenoSpitter
   components:
-  ### Imperial genetics
-  - type: ContainerContainer
-    containers:
-      gene_entity_slot: !type:Container
-  - type: ContainerFill
-    containers:
-      gene_entity_slot:
-      - GeneSampleXenoSpit
-  ### Imperial genetics end
   - type: Sprite
     drawdepth: Mobs
     sprite: Mobs/Aliens/Xenos/spitter.rsi
@@ -503,12 +493,13 @@
   - type: ComplexInteraction
   - type: MobState
   - type: Stamina
-    baseCritThreshold: 200
+    critThreshold: 200
   - type: Bloodstream
-    bloodReferenceSolution:
+    bloodReagents:
       reagents:
       - ReagentId: FluorosulfuricAcid
-        Quantity: 300
+        Quantity: 1
+    bloodMaxVolume: 300
   - type: MeleeWeapon
     altDisarm: false
     angle: 0
@@ -516,8 +507,8 @@
      collection: AlienClaw
     animation: WeaponArcBite
     damage:
-      types:
-        Slash: 5
+     groups:
+       Brute: 5
   - type: DamageStateVisuals
     states:
       Alive:
@@ -535,10 +526,9 @@
   - type: TypingIndicator
     proto: alien
   - type: Temperature
-    currentTemperature: 310.15
-  - type: TemperatureDamage
     heatDamageThreshold: 360
     coldDamageThreshold: -150
+    currentTemperature: 310.15
   - type: NoSlip
   - type: Perishable #Ummmm the acid kills a lot of the bacteria or something
     molsPerSecondPerUnitMass: 0.0005

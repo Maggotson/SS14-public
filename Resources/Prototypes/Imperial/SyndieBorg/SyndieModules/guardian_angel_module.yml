@@ -28,12 +28,9 @@
     solution: hypospray
   - type: ExaminableSolution
     solution: hypospray
-  - type: Injector
-    solutionName: hypospray
-    currentTransferAmount: 15
-    activeModeProtoId: HyposprayInjectMode
-    allowedModes:
-    - HyposprayInjectMode
+  - type: Hypospray
+    transferAmount: 15
+    onlyAffectsMobs: true
   - type: UseDelay
     delay: 0.5
   - type: Appearance
@@ -65,4 +62,4 @@
   - type: PowerCellDraw
     drawRate: 0
     useRate: 360
-
+  

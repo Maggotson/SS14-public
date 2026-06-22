@@ -4,7 +4,6 @@ using Content.Shared.Database;
 using Content.Shared.Inventory;
 using Content.Shared.Movement.Components;
 using Content.Shared.Movement.Systems;
-using Content.Shared.Standing;
 using Content.Shared.StatusEffectNew;
 using Content.Shared.StepTrigger.Systems;
 using Content.Shared.Stunnable;
@@ -31,13 +30,17 @@ public sealed class SlipperySystem : EntitySystem
     [Dependency] private readonly SharedPhysicsSystem _physics = default!;
     [Dependency] private readonly SpeedModifierContactsSystem _speedModifier = default!;
 
-    [Dependency] private readonly EntityQuery<KnockedDownComponent> _knockedDownQuery = default!;
-    [Dependency] private readonly EntityQuery<PhysicsComponent> _physicsQuery = default!;
-    [Dependency] private readonly EntityQuery<SlidingComponent> _slidingQuery = default!;
+    private EntityQuery<KnockedDownComponent> _knockedDownQuery;
+    private EntityQuery<PhysicsComponent> _physicsQuery;
+    private EntityQuery<SlidingComponent> _slidingQuery;
 
     public override void Initialize()
     {
         base.Initialize();
+
+        _knockedDownQuery = GetEntityQuery<KnockedDownComponent>();
+        _physicsQuery = GetEntityQuery<PhysicsComponent>();
+        _slidingQuery = GetEntityQuery<SlidingComponent>();
 
         SubscribeLocalEvent<SlipperyComponent, StepTriggerAttemptEvent>(HandleAttemptCollide);
         SubscribeLocalEvent<SlipperyComponent, StepTriggeredOffEvent>(HandleStepTrigger);
@@ -128,9 +131,6 @@ public sealed class SlipperySystem : EntitySystem
         // Preventing from playing the slip sound and stunning when you are already knocked down.
         if (!knockedDown)
         {
-            var evDropHands = new DropHandItemsEvent();
-            RaiseLocalEvent(uid, ref evDropHands);
-
             // Status effects should handle a TimeSpan of 0 properly...
             _stun.TryUpdateStunDuration(other, component.SlipData.StunTime);
 

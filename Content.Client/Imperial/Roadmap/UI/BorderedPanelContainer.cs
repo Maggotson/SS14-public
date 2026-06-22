@@ -13,8 +13,6 @@ public class BorderedPanelContainer : PanelContainer
 {
     [Dependency] private readonly IPrototypeManager _prototypeManager = default!;
 
-    private static string _borderRadiusShaderProtoId = "BorderRadius";
-
 
     private float _borderRadius = 0f;
     private Color _backgroundColor = Color.FromHex("#25252A");
@@ -57,7 +55,7 @@ public class BorderedPanelContainer : PanelContainer
     {
         IoCManager.InjectDependencies(this);
 
-        BorderShader = _prototypeManager.Index<ShaderPrototype>(_borderRadiusShaderProtoId).InstanceUnique();
+        BorderShader = _prototypeManager.Index<ShaderPrototype>("BorderRadius").InstanceUnique();
 
         BorderShader.SetParameter("artifactScaleProtection", _artifactScaleProtection);
     }

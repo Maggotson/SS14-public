@@ -8,7 +8,6 @@ using Content.Server.Roles;
 using Content.Shared.CCVar;
 using Content.Shared.Database;
 using Content.Shared.GameTicking;
-using Content.Shared.Maps;
 using Content.Shared.Mind;
 using Content.Shared.Players;
 using Content.Shared.Preferences;
@@ -27,6 +26,8 @@ using Robust.Shared.Utility;
 using Content.Shared.Imperial.ICCVar; //Imperial
 using Content.Shared.Voting; //Imperial
 using Content.Server.Voting.Managers;
+using Content.Shared.Imperial.ICCVar; //Imperial
+using Robust.Shared.Configuration; //Imperial
 
 namespace Content.Server.GameTicking
 {
@@ -398,9 +399,7 @@ namespace Content.Server.GameTicking
                 }
                 else
                 {
-                    var speciesToBlacklist =
-                        new HashSet<string>(_cfg.GetCVar(CCVars.ICNewAccountSpeciesBlacklist).Split(","));
-                    profile = HumanoidCharacterProfile.Random(speciesToBlacklist);
+                    profile = HumanoidCharacterProfile.Random();
                 }
                 readyPlayerProfiles.Add(userId, profile);
             }

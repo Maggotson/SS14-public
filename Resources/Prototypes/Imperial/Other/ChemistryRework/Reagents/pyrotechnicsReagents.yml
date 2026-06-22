@@ -8,7 +8,7 @@
   pricePerUnit: 1.5
   color: "#A7B0E9"
   metabolisms:
-    Bloodstream:
+    Poison:
       effects:
       - !type:HealthChange
         damage:
@@ -79,21 +79,21 @@
   color: "#2DA94C"
   group: Toxins
   metabolisms:
-    Bloodstream:
+    Poison:
       effects:
       - !type:HealthChange
         damage:
           types:
             Poison: 5
-      # - !type:AdjustReagentsByGroup
-      #   group: Poison
-      #   amount: -3
-      # - !type:AdjustReagentsByGroup
-      #   group: Medicine
-      #   amount: -3
-      # - !type:AdjustReagentsByGroup
-      #   group: Narcotic
-      #   amount: -3
+      - !type:AdjustReagentsByGroup
+        group: Poison
+        amount: -3
+      - !type:AdjustReagentsByGroup
+        group: Medicine
+        amount: -3
+      - !type:AdjustReagentsByGroup
+        group: Narcotic
+        amount: -3
 
 - type: reagent
   id: QuantumHairDye
@@ -104,7 +104,7 @@
   color: "#982CEE"
   group: Unknown
   metabolisms:
-    Bloodstream:
+    Poison:
       effects:
       - !type:ChangeMarkingColor
   reactiveEffects:
@@ -113,6 +113,10 @@
       effects:
       - !type:ChangeMarkingColor
         invertColor: true
+        conditions:
+          - !type:ReagentCondition
+            min: 5
+            reagent: QuantumHairDye
 
 - type: reagent
   id: QuantumTailDye
@@ -123,7 +127,7 @@
   color: "#982CEE"
   group: Unknown
   metabolisms:
-    Bloodstream:
+    Poison:
       effects:
       - !type:ChangeMarkingColor
         markingCategory: "Tail"
@@ -134,6 +138,10 @@
       - !type:ChangeMarkingColor
         markingCategory: "Tail"
         invertColor: true
+        conditions:
+          - !type:ReagentCondition
+            min: 5
+            reagent: QuantumTailDye
 
 - type: reagent
   id: ValproicAcid
@@ -144,10 +152,9 @@
   color: "#5CCE6C"
   group: Unknown
   metabolisms:
-    Bloodstream:
+    Poison:
       effects:
       - !type:RemoveMark
-        markingCategory: Hair
         conditions:
           - !type:ReagentCondition
             reagent: ValproicAcid
@@ -162,23 +169,11 @@
   color: "#F37A00"
   group: Biological
   metabolisms:
-    Bloodstream:
+    Food:
       effects:
       - !type:Luminescence
         color: "#F37A00"
         energyPerUnit: 2
-        maxEnergy: 140
-        maxRange: 20
-  reactiveEffects:
-    Acidic:
-      methods: [ Touch ]
-      effects:
-      - !type:Luminescence
-        color: "#F37A00"
-        maxEnergy: 140
-        maxRange: 20
-        energyPerUnit: 2
-        touchExpiryPerUnit: 4
 
 - type: reagent
   id: UnstableTineaLuxor
@@ -189,21 +184,10 @@
   color: "#A9A43A"
   group: Biological
   metabolisms:
-    Digestion:
+    Food:
       effects:
       - !type:Luminescence
-        maxEnergy: 140
-        maxRange: 20
         energyPerUnit: 2
-  reactiveEffects:
-    Acidic:
-      methods: [ Touch ]
-      effects:
-      - !type:Luminescence
-        maxEnergy: 140
-        maxRange: 20
-        energyPerUnit: 2
-        touchExpiryPerUnit: 4
 
 - type: reagent
   id: Mutadone
@@ -214,7 +198,7 @@
   color: "#5CCE6C"
   group: Unknown
   metabolisms:
-    Bloodstream:
+    Poison:
       metabolismRate: 5.0
       effects:
       - !type:ChangeMarkingColor
@@ -235,7 +219,7 @@
   pricePerUnit: 20
   color: "#92DA6D"
   metabolisms:
-    Bloodstream:
+    Poison:
       effects:
       - !type:HealthChange
         damage:

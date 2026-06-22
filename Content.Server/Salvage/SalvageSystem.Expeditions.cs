@@ -8,7 +8,6 @@ using Content.Shared.Shuttles.Components;
 using Robust.Shared.CPUJob.JobQueues;
 using Robust.Shared.CPUJob.JobQueues.Queues;
 using Robust.Shared.GameStates;
-using Robust.Shared.Random;
 
 namespace Content.Server.Salvage;
 
@@ -18,9 +17,7 @@ public sealed partial class SalvageSystem
      * Handles setup / teardown of salvage expeditions.
      */
 
-    private const int MissionLimit = 5; // IMPERIAL IMPROVED SALVAGE
-
-    private readonly string[] MissionsDiff = ["Doomed", "Cakewalk", "Hard", "Infestation", "Suicidle", "Moderate"]; // Imperial Improved Salvage
+    private const int MissionLimit = 3;
 
     private readonly JobQueue _salvageQueue = new();
     private readonly List<(SpawnSalvageMissionJob Job, CancellationTokenSource CancelToken)> _salvageJobs = new();
@@ -151,7 +148,7 @@ public sealed partial class SalvageSystem
             {
                 Index = component.NextIndex,
                 Seed = _random.Next(),
-                Difficulty = _random.Pick(MissionsDiff), // Imperial Improved Salvage
+                Difficulty = "Moderate",
             };
 
             component.Missions[component.NextIndex++] = mission;

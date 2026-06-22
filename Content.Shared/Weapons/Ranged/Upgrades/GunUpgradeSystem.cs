@@ -13,7 +13,6 @@ using Content.Shared.Whitelist;
 using Robust.Shared.Audio.Systems;
 using Robust.Shared.Containers;
 using Robust.Shared.Prototypes;
-using Content.Shared.Weapons.Ranged.Components; /// IMPERIAL IMPROVED GUN UPGRADES
 
 namespace Content.Shared.Weapons.Ranged.Upgrades;
 
@@ -39,8 +38,6 @@ public sealed class GunUpgradeSystem : EntitySystem
         SubscribeLocalEvent<GunUpgradeFireRateComponent, GunRefreshModifiersEvent>(OnFireRateRefresh);
         SubscribeLocalEvent<GunUpgradeSpeedComponent, GunRefreshModifiersEvent>(OnSpeedRefresh);
         SubscribeLocalEvent<GunUpgradeDamageComponent, GunShotEvent>(OnDamageGunShot);
-        /// IMPERIAL IMPROVED GUN UPGRADES START
-        SubscribeLocalEvent<GunUpgradeProjectileComponent, GunRefreshModifiersEvent>(OnProjectileRefresh);
     }
 
     private void RelayEvent<T>(Entity<UpgradeableGunComponent> ent, ref T args) where T : notnull
@@ -145,14 +142,4 @@ public sealed class GunUpgradeSystem : EntitySystem
             }
         }
     }
-
-    /// IMPERIAL IMPROVED GUN UPGRADES START
-    private void OnProjectileRefresh(Entity<GunUpgradeProjectileComponent> ent, ref GunRefreshModifiersEvent args)
-    {
-        if (TryComp<BasicEntityAmmoProviderComponent>(args.Gun.Owner, out var providerComp))
-        {
-            providerComp.Proto = ent.Comp.Proto;
-        }
-    }
-    /// IMPERIAL IMPROVED GUN UPGRADES END
 }

@@ -5,6 +5,8 @@ namespace Content.Client.Xenoarchaeology.XenoArtifacts;
 
 public sealed class RandomArtifactSpriteSystem : VisualizerSystem<RandomArtifactSpriteComponent>
 {
+    [Dependency] private readonly SpriteSystem _sprite = default!;
+
     protected override void OnAppearanceChange(EntityUid uid, RandomArtifactSpriteComponent component, ref AppearanceChangeEvent args)
     {
         if (args.Sprite == null)

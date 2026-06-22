@@ -47,7 +47,7 @@ public sealed class GeigerSystem : SharedGeigerSystem
     {
         if (geiger.Comp.AttachedToSuit)
             SetEnabled(geiger, true);
-        SetUser(geiger, args.EquipTarget);
+        SetUser(geiger, args.Equipee);
     }
 
     private void OnEquippedHand(Entity<GeigerComponent> geiger, ref GotEquippedHandEvent args)

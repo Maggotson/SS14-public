@@ -8,6 +8,8 @@ namespace Content.Client.Imperial.ImperialStore.Ui.Fragments.CurrencyAmount;
 [GenerateTypedNameReferences]
 public sealed partial class CurrencyAmountUiFragment : BoxContainer
 {
+    public event Action<int>? OnWithdrawButtonDown;
+
     public CurrencyAmountUiFragment()
     {
         RobustXamlLoader.Load(this);

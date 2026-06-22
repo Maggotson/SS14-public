@@ -11,7 +11,7 @@
   - !type:PlantAdjustToxins
     amount: -7.25
   metabolisms:
-    Bloodstream:
+    Poison:
       effects:
       - !type:HealthChange
         damage:
@@ -36,7 +36,7 @@
   boilingPoint: 55.5
   meltingPoint: -50.0
   metabolisms:
-    Bloodstream:
+    Medicine:
       effects:
       - !type:HealthChange
         probability: 0.8
@@ -58,7 +58,7 @@
   flavor: medicine
   color: "#cca300"
   metabolisms:
-    Bloodstream:
+    Medicine:
       effects:
       - !type:HealthChange
         conditions:
@@ -78,8 +78,7 @@
             Shock: -1.75
       - !type:HealthChange
         conditions:
-          - !type:ReagentCondition
-            reagent: SynclotidicAcid
+          - !type:TotalDamageCondition
             min: 18
         damage:
           types:
@@ -100,7 +99,7 @@
   pricePerUnit: 1
   color: "#99004d"
   metabolisms:
-    Bloodstream:
+    Medicine:
       effects:
       - !type:HealthChange
         damage:
@@ -108,8 +107,7 @@
             Poison: -0.75
       - !type:HealthChange
         conditions:
-        - !type:ReagentCondition
-          reagent: Alosethasone
+        - !type:TotalDamageCondition
           min: 16
         damage:
           types:
@@ -124,8 +122,7 @@
             Radiation: -3.25
       - !type:GenericStatusEffect
         conditions:
-        - !type:ReagentCondition
-          reagent: Alosethasone
+        - !type:TotalDamageCondition
           min: 16
         key: Stutter
         component: ScrambledAccent
@@ -140,7 +137,7 @@
   pricePerUnit: 6
   color: "#4d4d00"
   metabolisms:
-    Bloodstream:
+    Medicine:
       effects:
       - !type:HealthChange
         conditions:
@@ -160,8 +157,7 @@
             Radiation: -1.25
       - !type:HealthChange
         conditions:
-        - !type:ReagentCondition
-          reagent: Acenazone
+        - !type:TotalDamageCondition
           min: 22
         damage:
           types:
@@ -169,13 +165,11 @@
             Piercing: 1.75
       - !type:Jitter
         conditions:
-        - !type:ReagentCondition
-          reagent: Acenazone
+        - !type:TotalDamageCondition
           min: 22
       - !type:Vomit
         conditions:
-        - !type:ReagentCondition
-          reagent: Acenazone
+        - !type:TotalDamageCondition
           min: 22
         probability: 0.7
       - !type:AdjustReagent
@@ -183,7 +177,7 @@
         amount: -2
       - !type:AdjustReagent
         conditions:
-        - !type:ReagentCondition
+        - !type:TotalDamageCondition
           reagent: Ketopiride
           min: 1
         reagent: Acenazone
@@ -191,7 +185,7 @@
       - !type:AdjustReagent
         probability: 0.05
         conditions:
-        - !type:ReagentCondition
+        - !type:TotalDamageCondition
           reagent: Ketopiride
           min: 1
         reagent: Lexorin
@@ -207,7 +201,7 @@
   pricePerUnit: 0.8
   color: "#660033"
   metabolisms:
-    Bloodstream:
+    Medicine:
       effects:
       - !type:HealthChange
         damage:
@@ -217,8 +211,7 @@
             Slash: -0.5
       - !type:HealthChange
         conditions:
-        - !type:ReagentCondition
-          reagent: Flexitaine
+        - !type:TotalDamageCondition
           min: 19
         damage:
           types:
@@ -226,21 +219,20 @@
             Piercing: 0.5
       - !type:Vomit
         conditions:
-        - !type:ReagentCondition
-          reagent: Flexitaine
+        - !type:TotalDamageCondition
           min: 26
         probability: 0.5
       - !type:Jitter
         conditions:
-        - !type:ReagentCondition
-          reagent: Flexitaine
+        - !type:TotalDamageCondition
           min: 19
-      - !type:EvenHealthChange
+      - !type:HealthChange
         conditions:
         - !type:TemperatureCondition
           max: 151.0
         damage:
-          Brute: -4.25
+          groups:
+            Brute: -4.25
 
 - type: reagent
   id: Retropine
@@ -252,7 +244,7 @@
   pricePerUnit: 3
   color: "#663300"
   metabolisms:
-    Bloodstream:
+    Medicine:
       effects:
       - !type:HealthChange
         damage:
@@ -280,8 +272,7 @@
             Slash: -1.25
       - !type:HealthChange
         conditions:
-        - !type:ReagentCondition
-          reagent: Retropine
+        - !type:TotalDamageCondition
           min: 15
         damage:
           types:
@@ -289,15 +280,15 @@
             Cellular: 1
       - !type:Vomit
         conditions:
-        - !type:ReagentCondition
-          reagent: Retropine
+        - !type:TotalDamageCondition
           min: 30
         probability: 0.05
       - !type:Jitter
         conditions:
-        - !type:ReagentCondition
-          reagent: Retropine
+        - !type:TotalDamageCondition
           min: 15
+    Alcohol:
+      effects:
       - !type:Drunk
 
 - type: reagent
@@ -310,7 +301,7 @@
   pricePerUnit: 7.5
   color: "#00001a"
   metabolisms:
-    Bloodstream:
+    Medicine:
       effects:
       - !type:HealthChange
         conditions:
@@ -334,8 +325,7 @@
             Caustic: -0.75
       - !type:HealthChange
         conditions:
-        - !type:ReagentCondition
-          reagent: Tessine
+        - !type:TotalDamageCondition
           min: 16
         damage:
           types:
@@ -343,14 +333,12 @@
             Cellular: 2
       - !type:Vomit
         conditions:
-        - !type:ReagentCondition
-          reagent: Tessine
+        - !type:TotalDamageCondition
           min: 21
         probability: 0.7
       - !type:Jitter
         conditions:
-        - !type:ReagentCondition
-          reagent: Tessine
+        - !type:TotalDamageCondition
           min: 17
 
 - type: reagent
@@ -363,7 +351,7 @@
   pricePerUnit: 25
   color: "#bd5902"
   metabolisms:
-    Bloodstream:
+    Medicine:
       effects:
       - !type:HealthChange
         damage:
@@ -580,26 +568,21 @@
   flavor: medicine
   color: "#fffde4"
   metabolisms:
-    Bloodstream:
+    Medicine:
       effects:
-      - !type:EvenHealthChange
+      - !type:HealthChange
         damage:
-          Brute: -1.25
-          Burn: -0.35
+          groups:
+            Brute: -1.25
+            Burn: -0.35
       - !type:HealthChange
         conditions:
-        - !type:ReagentCondition
-          reagent: SalineGlucose
+        - !type:TotalDamageCondition
           min: 40
         damage:
-          types:
-            Blunt: 0.21666667
-            Slash: 0.21666667
-            Piercing: 0.21666667
-            Heat: 0.0375
-            Shock: 0.0375
-            Cold: 0.0375
-            Caustic: 0.0375
+          groups:
+            Brute: 0.65
+            Burn: 0.15
       - !type:ModifyBloodLevel
         amount: 6
       - !type:AdjustReagent
@@ -615,27 +598,20 @@
   flavor: medicine
   color: "#b0fe8a"
   metabolisms:
-    Bloodstream:
+    Medicine:
       effects:
-      - !type:EvenHealthChange
-        damage:
-          Burn: -1.15
       - !type:HealthChange
         damage:
-          types:
-            Poison: 0.05
-            Radiation: 0.05
+          groups:
+            Burn: -1.15
+            Toxin: 0.10
       - !type:HealthChange
         conditions:
-        - !type:ReagentCondition
-          reagent: SilverSulfadiazine
+        - !type:TotalDamageCondition
           min: 35
         damage:
-          types:
-            Heat: 0.2
-            Shock: 0.2
-            Cold: 0.2
-            Caustic: 0.2
+          groups:
+            Burn: 0.80
 
 - type: reagent
   id: Antihol
@@ -646,12 +622,11 @@
   flavor: medicine
   color: "#b0a28a"
   metabolisms:
-    Bloodstream:
+    Medicine:
       effects:
       - !type:HealthChange
         conditions:
-        - !type:ReagentCondition
-          reagent: Antihol
+        - !type:TotalDamageCondition
           min: 15
         damage:
           types:
@@ -670,11 +645,12 @@
   flavor: medicine
   color: "#149efd"
   metabolisms:
-    Bloodstream:
+    Medicine:
       effects:
-      - !type:EvenHealthChange
+      - !type:HealthChange
         damage:
-          Airloss: -0.90
+          groups:
+            Airloss: -0.90
 
 
 - type: reaction

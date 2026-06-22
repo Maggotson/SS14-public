@@ -19,7 +19,6 @@ public sealed class SmasherSystem : SharedSmasherSystem
     {
         base.Initialize();
         SubscribeNetworkEvent<ShowShieldEffectEvent>(OnShowShieldEffect);
-        SubscribeNetworkEvent<HideShieldEffectEvent>(OnHideShieldEffect);
 
         CommandBinds.Builder
             .Bind(EngineKeyFunctions.UseSecondary,
@@ -44,8 +43,6 @@ public sealed class SmasherSystem : SharedSmasherSystem
                 GetNetEntity(user.Value),
                 args.State
             ));
-
-            return true;
         }
 
         return false;
@@ -56,11 +53,6 @@ public sealed class SmasherSystem : SharedSmasherSystem
         ShowShieldEffectClient(GetEntity(ev.Uid), ev.EffectDecay, ev.Loop);
     }
 
-    private void OnHideShieldEffect(HideShieldEffectEvent ev)
-    {
-        HideShieldEffectClient(GetEntity(ev.Uid));
-    }
-
     /// <summary>
     /// Renders the shield effect on the entity sprite.
     /// </summary>
@@ -69,7 +61,7 @@ public sealed class SmasherSystem : SharedSmasherSystem
     /// <param name="loop">Should the animation loop</param>
     private void ShowShieldEffectClient(EntityUid uid, SpriteSpecifier? effect, bool loop)
     {
-        HideShieldEffectClient(uid);
+        HideShieldEffect(uid);
 
         if (!TryComp<SpriteComponent>(uid, out var sprite))
             return;
@@ -92,7 +84,7 @@ public sealed class SmasherSystem : SharedSmasherSystem
         }
     }
 
-    private void HideShieldEffectClient(EntityUid uid)
+    private void HideShieldEffect(EntityUid uid)
     {
         if (!TryComp<SpriteComponent>(uid, out var sprite))
             return;

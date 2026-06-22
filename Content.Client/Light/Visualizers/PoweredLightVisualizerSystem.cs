@@ -11,6 +11,7 @@ public sealed class PoweredLightVisualizerSystem : VisualizerSystem<PoweredLight
 {
     [Dependency] private readonly IRobustRandom _random = default!;
     [Dependency] private readonly SharedAudioSystem _audio = default!;
+    [Dependency] private readonly SpriteSystem _sprite = default!;
 
     public override void Initialize()
     {

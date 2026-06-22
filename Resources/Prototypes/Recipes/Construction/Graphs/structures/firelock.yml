@@ -50,7 +50,7 @@
           steps:
             - tag: FirelockElectronics
               store: board
-              name: recipes-firelock-electronics-name
+              name: микросхема пожарного шлюза # Imperial Recipes Locale
               icon:
                 sprite: "Objects/Misc/module.rsi"
                 state: "mainboard"

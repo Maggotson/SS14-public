@@ -33,11 +33,6 @@ public sealed partial class BlockingSystem : EntitySystem
     [Dependency] private readonly ExamineSystemShared _examine = default!;
     [Dependency] private readonly TurfSystem _turf = default!;
 
-    [Dependency] private readonly EntityQuery<BlockingComponent> _blockQuery = default!;
-    [Dependency] private readonly EntityQuery<HandsComponent> _handQuery = default!;
-    [Dependency] private readonly EntityQuery<MobStateComponent> _mobQuery = default!;
-    [Dependency] private readonly EntityQuery<BlockingUserComponent> _userQuery = default!;
-
     public override void Initialize()
     {
         base.Initialize();
@@ -96,7 +91,10 @@ public sealed partial class BlockingSystem : EntitySystem
         if (args.Handled)
             return;
 
-        if (!_handQuery.TryGetComponent(args.Performer, out var hands))
+        var blockQuery = GetEntityQuery<BlockingComponent>();
+        var handQuery = GetEntityQuery<HandsComponent>();
+
+        if (!handQuery.TryGetComponent(args.Performer, out var hands))
             return;
 
         var shields = _handsSystem.EnumerateHeld((args.Performer, hands)).ToArray();
@@ -106,7 +104,7 @@ public sealed partial class BlockingSystem : EntitySystem
             if (shield == uid)
                 continue;
 
-            if (_blockQuery.TryGetComponent(shield, out var otherBlockComp) && otherBlockComp.IsBlocking)
+            if (blockQuery.TryGetComponent(shield, out var otherBlockComp) && otherBlockComp.IsBlocking)
             {
                 CantBlockError(args.Performer);
                 return;
@@ -172,9 +170,10 @@ public sealed partial class BlockingSystem : EntitySystem
         if (playerTileRef != null)
         {
             var intersecting = _lookup.GetLocalEntitiesIntersecting(playerTileRef.Value, 0f);
+            var mobQuery = GetEntityQuery<MobStateComponent>();
             foreach (var uid in intersecting)
             {
-                if (uid != user && _mobQuery.HasComponent(uid))
+                if (uid != user && mobQuery.HasComponent(uid))
                 {
                     TooCloseError(user);
                     return false;
@@ -246,7 +245,7 @@ public sealed partial class BlockingSystem : EntitySystem
         if (TryComp<BlockingUserComponent>(user, out var blockingUserComponent) && TryComp<PhysicsComponent>(user, out var physicsComponent))
         {
             if (xform.Anchored)
-                _transformSystem.Unanchor(user, xform, false);
+                _transformSystem.Unanchor(user, xform);
 
             _actionsSystem.SetToggled(component.BlockingToggleActionEntity, false);
             _fixtureSystem.DestroyFixture(user, BlockingComponent.BlockFixtureID, body: physicsComponent);
@@ -272,14 +271,17 @@ public sealed partial class BlockingSystem : EntitySystem
         if (component.IsBlocking)
             StopBlocking(uid, component, user);
 
-        if (!_handQuery.TryGetComponent(user, out var hands))
+        var userQuery = GetEntityQuery<BlockingUserComponent>();
+        var handQuery = GetEntityQuery<HandsComponent>();
+
+        if (!handQuery.TryGetComponent(user, out var hands))
             return;
 
         var shields = _handsSystem.EnumerateHeld((user, hands)).ToArray();
 
         foreach (var shield in shields)
         {
-            if (HasComp<BlockingComponent>(shield) && _userQuery.TryGetComponent(user, out var blockingUserComponent))
+            if (HasComp<BlockingComponent>(shield) && userQuery.TryGetComponent(user, out var blockingUserComponent))
             {
                 blockingUserComponent.BlockingItem = shield;
                 return;

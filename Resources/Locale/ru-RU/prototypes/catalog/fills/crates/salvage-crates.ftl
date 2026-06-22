@@ -1,4 +1,4 @@
-ent-CrateSalvageEquipment = ящик продвинутого шахтёрского снаряжения
+ent-CrateSalvageEquipment = ящик снаряжения утилизатора
     .desc = Для отважных.
 
 ent-CrateSalvageAssortedGoodies = ящик

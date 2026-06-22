@@ -1,5 +1,5 @@
 - type: entity
-  parent: CratePirate
+  parent: CratePirateSecure
   id: CratePirateChestCaptain
   name: captains pirate chest
   suffix: Filled
@@ -11,9 +11,11 @@
         - id: ClothingNeckCloakPirateCap
         - id: EnergyCutlass
         - id: MicroBombImplanter
+  - type: AccessReader
+    access: [["CaptainPirate"]] #Imperial Space Pirates: New Horizon
 
 - type: entity
-  parent: CratePirate
+  parent: CratePirateSecure
   id: CratePirateChest
   name: crews pirate chest
   suffix: Filled

@@ -52,11 +52,13 @@
 
 # Wood
 - type: construction
+  name: Деревянный кофейный столик
   id: CoffeeTableWood
   graph: CoffeeTableGraph
   startNode: start
   targetNode: CoffeeTableWood
   category: construction-category-furniture
+  description: Не размещайте рядом с огнем. Ходят слухи, что они хорошо горят.
   objectType: Structure
   placementMode: SnapgridCenter
   canBuildInImpassable: false
@@ -66,11 +68,13 @@
 
 # Steel
 - type: construction
+  name: Кофейный столик
   id: CoffeeTableSteel
   graph: CoffeeTableGraph
   startNode: start
   targetNode: CoffeeTableSteel
   category: construction-category-furniture
+  description: Лист металла, стоящий на четырех металлических ножках.
   objectType: Structure
   placementMode: SnapgridCenter
   canBuildInImpassable: false
@@ -80,11 +84,13 @@
 
 # Reinforced
 - type: construction
+  name: Укреплённый кофейный столик
   id: CoffeeTableReinforced
   graph: CoffeeTableGraph
   startNode: start
   targetNode: CoffeeTableReinforced
   category: construction-category-furniture
+  description: Лист металла, стоящий на четырех металлических ножках. Очень прочный.
   objectType: Structure
   placementMode: SnapgridCenter
   canBuildInImpassable: false
@@ -94,11 +100,13 @@
 
 # Glass
 - type: construction
+  name: Стеклянный кофейный столик
   id: CoffeeTableGlass
   graph: CoffeeTableGraph
   startNode: start
   targetNode: CoffeeTableGlass
   category: construction-category-furniture
+  description: Лист стекла, стоящий на четырех металлических ножках.
   objectType: Structure
   placementMode: SnapgridCenter
   canBuildInImpassable: false
@@ -108,11 +116,13 @@
 
 # Plasma
 - type: construction
+  name: Плазменный кофейный столик
   id: CoffeeTablePlasma
   graph: CoffeeTableGraph
   startNode: start
   targetNode: CoffeeTablePlasma
   category: construction-category-furniture
+  description: Лист плазменного стекла, стоящий на четырех металлических ножках.
   objectType: Structure
   placementMode: SnapgridCenter
   canBuildInImpassable: false
@@ -122,11 +132,13 @@
 
 # Reinforced glass
 - type: construction
+  name: Укреплённый стеклянный кофейный столик
   id: CoffeeTableReinforcedGlass
   graph: CoffeeTableGraph
   startNode: start
   targetNode: CoffeeTableReinforcedGlass
   category: construction-category-furniture
+  description: Лист стекла, стоящий на четырех металлических ножках. Очень прочный.
   objectType: Structure
   placementMode: SnapgridCenter
   canBuildInImpassable: false
@@ -136,11 +148,13 @@
 
 # Uranium
 - type: construction
+  name: Урановый кофейный столик
   id: CoffeeTableUranium
   graph: CoffeeTableGraph
   startNode: start
   targetNode: CoffeeTableUranium
   category: construction-category-furniture
+  description: Лист уранового стекла, стоящий на четырех металлических ножках. Симпатичный!
   objectType: Structure
   placementMode: SnapgridCenter
   canBuildInImpassable: false
@@ -150,11 +164,13 @@
 
 # Reinforced Uranium
 - type: construction
+  name: Укреплённый урановый кофейный столик
   id: CoffeeTableReinforcedUranium
   graph: CoffeeTableGraph
   startNode: start
   targetNode: CoffeeTableReinforcedUranium
   category: construction-category-furniture
+  description: Лист укрепленного уранового стекла, стоящий на четырех металлических ножках. Очень прочный.
   objectType: Structure
   placementMode: SnapgridCenter
   canBuildInImpassable: false
@@ -164,11 +180,13 @@
 
 # Reinforced plasma
 - type: construction
+  name: Укреплённый плазменный кофейный столик
   id: CoffeeTableReinforcedPlasma
   graph: CoffeeTableGraph
   startNode: start
   targetNode: CoffeeTableReinforcedPlasma
   category: construction-category-furniture
+  description: Лист укрепленного плазменного стекла, стоящий на четырех металлических ножках.
   objectType: Structure
   placementMode: SnapgridCenter
   canBuildInImpassable: false

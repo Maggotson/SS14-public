@@ -15,25 +15,24 @@
       - !type:Flammable
         multiplier: 0.8
   metabolisms:
-    Bloodstream:
+    Poison:
       effects:
       - !type:HealthChange
         damage:
           types:
-            Radiation: 2.66
-    Respiration:
+            Radiation: 8
+    Gas:
       effects:
       - !type:HealthChange
+        scaleByQuantity: true
         ignoreResistances: true
         damage:
-          types:
-            Slash: -0.33
-            Blunt: -0.33
-            Heat: -0.33
-            Asphyxiation: -0.67
-            Radiation: -0.33
-            Poison: -0.33
-            Bloodloss: -0.33
-            Shock: -0.20
-            Caustic: -0.12
-            Piercing: -0.33
+           groups:
+            Brute: -4
+            Burn: -6
+            Toxin: -4
+            Airloss: -2
+      - !type:ModifyStatusEffect
+        effectProto: StatusEffectForcedSleeping
+        time: 3
+        type: Set

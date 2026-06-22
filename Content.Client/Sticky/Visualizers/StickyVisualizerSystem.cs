@@ -5,11 +5,13 @@ namespace Content.Client.Sticky.Visualizers;
 
 public sealed class StickyVisualizerSystem : VisualizerSystem<StickyVisualizerComponent>
 {
-    [Dependency] private readonly EntityQuery<SpriteComponent> _spriteQuery = default!;
+    private EntityQuery<SpriteComponent> _spriteQuery;
 
     public override void Initialize()
     {
         base.Initialize();
+
+        _spriteQuery = GetEntityQuery<SpriteComponent>();
 
         SubscribeLocalEvent<StickyVisualizerComponent, ComponentInit>(OnInit);
     }

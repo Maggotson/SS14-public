@@ -1,3 +1,4 @@
+using Content.Shared.Containers.ItemSlots;
 using Content.Shared.DeviceNetwork;
 using Content.Shared.Damage.Components;
 using Content.Shared.FixedPoint;
@@ -179,7 +180,7 @@ public sealed partial class BorgSystem
             return 1;
         }
 
-        return 1 - ((FixedPoint2)(_damageable.GetTotalDamage((uid, damageable)) / threshold)).Float();
+        return 1 - ((FixedPoint2)(damageable.TotalDamage / threshold)).Float();
     }
 
     /// <summary>

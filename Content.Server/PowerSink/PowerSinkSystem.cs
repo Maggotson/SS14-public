@@ -68,7 +68,7 @@ namespace Content.Server.PowerSink
 
                 _battery.ChangeCharge((entity, battery), networkLoad.NetworkLoad.ReceivingPower * frameTime);
 
-                var currentBatteryThreshold = _battery.GetChargeLevel((entity, battery));
+                var currentBatteryThreshold = battery.CurrentCharge / battery.MaxCharge;
 
                 // Check for warning message threshold
                 if (!component.SentImminentExplosionWarningMessage &&
@@ -96,7 +96,7 @@ namespace Content.Server.PowerSink
                 //Imperial Space Pirates: New Horizon; End
                 
                 // Check for explosion
-                if (!_battery.IsFull((entity, battery)))
+                if (battery.CurrentCharge < battery.MaxCharge)
                     continue;
 
                 if (component.ExplosionTime == null)

@@ -1013,20 +1013,16 @@
   id: FederationAccessManipulator
   components:
     - type: Sprite
-      sprite: Objects/Tools/access_configurator.rsi
-      state: icon
+      sprite: Imperial/Other/ElysiumPrime/Misc/accessconf.rsi
     - type: Icon
-      sprite: Objects/Tools/access_configurator.rsi
+      sprite: Imperial/Other/ElysiumPrime/Misc/accessconf.rsi
       state: icon
     - type: Item
-      sprite: Objects/Tools/access_configurator.rsi
+      sprite: Imperial/Other/ElysiumPrime/Misc/accessconf.rsi
     - type: AccessOverrider
       accessLevels: 
       - Federationadmin
       - Federation
-      - FelixGorlexBaseID
-      - FelixGorlexModernID
-      - StarCorps
 
 - type: entity
   parent: Poweredlight

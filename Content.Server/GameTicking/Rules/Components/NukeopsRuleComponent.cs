@@ -141,8 +141,5 @@ public enum WinCondition : byte
     NukiesAbandoned,
     AllNukiesDead,
     SomeNukiesAlive,
-    AllNukiesAlive,
-    // Imperial Space EnergyCore start
-    CoreExploded
-    // Imperial Space EnergyCore end
+    AllNukiesAlive
 }

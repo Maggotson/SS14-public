@@ -16,9 +16,17 @@ public sealed class ClickableSystem : EntitySystem
     [Dependency] private readonly SharedTransformSystem _transforms = default!;
     [Dependency] private readonly SpriteSystem _sprites = default!;
 
-    [Dependency] private readonly EntityQuery<ClickableComponent> _clickableQuery = default!;
-    [Dependency] private readonly EntityQuery<TransformComponent> _xformQuery = default!;
-    [Dependency] private readonly EntityQuery<FadingSpriteComponent> _fadingSpriteQuery = default!;
+    private EntityQuery<ClickableComponent> _clickableQuery;
+    private EntityQuery<TransformComponent> _xformQuery;
+    private EntityQuery<FadingSpriteComponent> _fadingSpriteQuery;
+
+    public override void Initialize()
+    {
+        base.Initialize();
+        _clickableQuery = GetEntityQuery<ClickableComponent>();
+        _xformQuery = GetEntityQuery<TransformComponent>();
+        _fadingSpriteQuery = GetEntityQuery<FadingSpriteComponent>();
+    }
 
     /// <summary>
     /// Used to check whether a click worked. Will first check if the click falls inside of some explicit bounding

@@ -209,7 +209,7 @@ public abstract class SharedWieldableSystem : EntitySystem
     private void OnBlockerEquipped(Entity<WieldingBlockerComponent> ent, ref GotEquippedEvent args)
     {
         if (ent.Comp.BlockEquipped)
-            UnwieldAll(args.EquipTarget, force: true);
+            UnwieldAll(args.Equipee, force: true);
     }
 
     private void OnBlockerEquippedHand(Entity<WieldingBlockerComponent> ent, ref GotEquippedHandEvent args)

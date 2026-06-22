@@ -235,6 +235,8 @@ public sealed class AmbientSoundSystem : SharedAmbientSoundSystem
     /// </summary>
     private void ProcessNearbyAmbience(TransformComponent playerXform)
     {
+        var query = GetEntityQuery<TransformComponent>();
+        var metaQuery = GetEntityQuery<MetaDataComponent>();
         var mapPos = _xformSystem.GetMapCoordinates(playerXform);
 
         // Remove out-of-range ambiences
@@ -247,9 +249,9 @@ public sealed class AmbientSoundSystem : SharedAmbientSoundSystem
             if (comp.Enabled &&
                 // Don't keep playing sounds that have changed since.
                 sound.Sound == comp.Sound &&
-                TryComp(owner, out TransformComponent? xform) &&
+                query.TryGetComponent(owner, out var xform) &&
                 xform.MapID == playerXform.MapID &&
-                !Paused(owner))
+                !metaQuery.GetComponent(owner).EntityPaused)
             {
                 // TODO: This is just trydistance for coordinates.
                 var distance = (xform.ParentUid == playerXform.ParentUid)
@@ -292,7 +294,7 @@ public sealed class AmbientSoundSystem : SharedAmbientSoundSystem
                 var comp = sourceEntity.Comp;
 
                 if (_playingSounds.ContainsKey(sourceEntity) ||
-                    Paused(uid))
+                    metaQuery.GetComponent(uid).EntityPaused)
                     continue;
 
                 var audioParams = _params

@@ -17,7 +17,6 @@ public sealed partial class MANDARINSystem : EntitySystem
     [Dependency] private readonly IPrototypeManager _مدير = default!;
 
     private ShaderInstance _usohjew = default!;
-    private static string _шейдерАйди = "MANDARINSHADER";
 
 
     public override void Initialize()
@@ -27,7 +26,7 @@ public sealed partial class MANDARINSystem : EntitySystem
         SubscribeLocalEvent<MANDARINComponent, ComponentStartup>(マンダリン);
         SubscribeLocalEvent<MANDARINComponent, ComponentShutdown>(ក្រូចថ្លុង);
 
-        _usohjew = _مدير.Index<ShaderPrototype>(_шейдерАйди).InstanceUnique();
+        _usohjew = _مدير.Index<ShaderPrototype>("MANDARINSHADER").InstanceUnique();
     }
 
     /// <summary>

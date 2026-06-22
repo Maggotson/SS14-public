@@ -357,7 +357,7 @@ public sealed partial class ImperialStoreSystem
             if (action != null)
                 _actionContainer.RemoveAction((action.Value.Owner, action.Value.Comp));
 
-            Del(purchase);
+            EntityManager.DeleteEntity(purchase);
         }
 
         component.BoughtEntities.Clear();

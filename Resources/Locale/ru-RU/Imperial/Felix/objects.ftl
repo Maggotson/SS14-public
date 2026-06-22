@@ -275,7 +275,3 @@ ent-ReinforcedConcreteCorner = забор
 ent-ReinforcedConcreteEnd = забор
     .desc = Передовые разработки перед вами, или вас где-то обманывают?..
 # Some temp sting?
-ent-ImperialSimpleRadio1Felix = {ent-ImperialSimpleRadio}
-    .desc = {ent-ImperialSimpleRadio.desc}
-ent-ImperialSimpleRadio2Felix = {ent-ImperialSimpleRadio}
-    .desc = {ent-ImperialSimpleRadio.desc}

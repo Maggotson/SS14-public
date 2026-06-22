@@ -24,7 +24,7 @@ namespace Content.Server.Imperial.ImperialBorgs
             SubscribeLocalEvent<BorgHypoComponent, GetItemActionsEvent>(OnGetActions);
             SubscribeLocalEvent<BorgHypoComponent, ChangeReagentAction>(OnReagentAction);
             SubscribeNetworkEvent<ChangeReagentEvent>(OnReagentChange);
-            SubscribeLocalEvent<BorgHypoComponent, UseInHandEvent>(OnUseInHand, before: [ typeof(InjectorSystem) ] );
+            SubscribeLocalEvent<BorgHypoComponent, UseInHandEvent>(OnUseInHand);
         }
 
         private void OnGetActions(EntityUid uid, BorgHypoComponent component, GetItemActionsEvent args)
@@ -127,8 +127,7 @@ namespace Content.Server.Imperial.ImperialBorgs
             {
                 return;
             }
-
-            _solutionSystem.RemoveAllSolution(solution.Value);
+            solution.Value.Comp.Solution.RemoveAllSolution();
 
             var generated = solutionRegenerationComponent.Generated;
 

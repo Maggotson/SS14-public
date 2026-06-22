@@ -5,6 +5,8 @@ namespace Content.Client.Wires.Visualizers
 {
     public sealed class WiresVisualizerSystem : VisualizerSystem<WiresVisualsComponent>
     {
+        [Dependency] private readonly SpriteSystem _sprite = default!;
+
         protected override void OnAppearanceChange(EntityUid uid, WiresVisualsComponent component, ref AppearanceChangeEvent args)
         {
             if (args.Sprite == null)

@@ -29,13 +29,9 @@ ent-BackroomsBacteria = бактерия
     .desc = Что это за нечто...
 ent-ThermosBlue = синий термос
     .desc = Жадность губительна. Помни об этом, начиная пить.
-ent-ThermosBlueFake = синий термос
-    .desc = Жадность губительна. Помни об этом, начиная пить.
 ent-ThermosGreen = зелёный термос
     .desc = Жадность губительна. Помни об этом, начиная пить.
 ent-ThermosRed = красный термос
-    .desc = Жадность губительна. Помни об этом, начиная пить.
-ent-ThermosRedFake = красный термос
     .desc = Жадность губительна. Помни об этом, начиная пить.
 ent-ThermosGray = серый термос
     .desc = Жадность губительна. Помни об этом, начиная пить.
@@ -46,8 +42,6 @@ ent-PortalGatewayBackrooms = неизвестная аномалия
 ent-HandTeleporterBackrooms = телепорт
     .desc = Используйте, чтобы создать порталы.
 hand-glitch-hurt = Коснувшись аномалии, вы ощущаете, как ваша плоть искажается.
-ghost-role-information-deathmoth-name = Смертомоль
-ghost-role-information-deathmoth-description = Вы - враждебная сущность.
 
 ent-ClothingUniformJumpsuitMadzima = брейкданс костюм
     .desc = Увидимся, мисси!
@@ -80,7 +74,7 @@ ent-ClothingHeadHatFurMoki = фиолетовая фурсьют маска
 ent-ClothingOuterFurMoki = фиолетовый фурсьют
     .desc = Невероятный костюм с фиолетовой шёрсткой, который понравится вашему партнёру!
 ent-CrateCargoFursuits = набор фурсьютов
-    .desc = Наконец-то, фурри вторник.
+    .desc = Наконец-то, фурри пятница.
 
 ent-WallInvisibleCrook = невидимая стена
     .desc = Даже тут невидимые стены...
@@ -173,7 +167,6 @@ metabolizer-type-android = Андроид
 laws-empty = Пустой
 ent-AndroidCore = ядро андроида
     .desc = Искусственный разум.
-species-name-android = андроид
 
 reagent-name-liquidpain = жидкая боль
 reagent-desc-liquidpain = Высокотоксичная, разлагающая, и кислотная субстанция.
@@ -182,13 +175,3 @@ reagent-physical-desc-liquidpain = желеобразное
 reagent-name-almondwater = миндальная вода
 reagent-desc-almondwater = Нежная, почти прозрачная жидкость, приятно пахнущая свежим миндалём.
 reagent-physical-desc-almondwater = прозрачное
-
-ent-WeaponRevolverChaplain = Big "John"
-    .desc = О чёрт о боже, это же чёртова большая пушка! Она создаёт святые пули по божьей воле. На ней гравировка BFG.
-    .suffix = Admeme, Святая, Crook
-ent-WeaponBigJohnRevolver = Big "John"
-    .desc = О чёрт о боже, это же чёртова большая пушка! Она воспроизводит пули внутри себя самой. На ней гравировка BFG.
-    .suffix = Admeme, Crook
-
-ent-ImperialSteamvent = паровая вентиляция
-    .desc = Пщщщщ! Кхе-кхе...

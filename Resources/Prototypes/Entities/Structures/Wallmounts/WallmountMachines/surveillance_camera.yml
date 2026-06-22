@@ -11,7 +11,7 @@
       light:
         shape:
           !type:PhysShapeCircle
-          radius: 0.5
+          radius: 5
         hard: false
         mask:
         - GhostImpassable
@@ -24,8 +24,7 @@
         - None
         layer:
         - TabletopMachineLayer
-  - type: CameraActiveOnCollide
-    requiresPower: false # TODO: Change this when AI can no longer see via unpowered cameras
+  - type: LightOnCollide
   - type: PointLight
     enabled: false
     radius: 5
@@ -48,7 +47,6 @@
   - type: DeviceNetworkRequiresPower
   - type: Transform
     anchored: true
-  - type: ZombieAttackImmune # imperial space
   - type: WiresPanel
   - type: Wires
     alwaysRandomize: true

@@ -1,11 +1,10 @@
 - type: gas
   id: Hydrogen
   name: gases-hydrogen
-  abbreviation: gas-hydrogen-abbreviation
-  molarHeatCapacity: 15
+  specificHeat: 15
   heatCapacityRatio: 1.3
   molarMass: 2
-  color: '#ffffff'
+  color: ffffff
   reagent: Hydrogen
   pricePerMole: 1
 

@@ -151,11 +151,10 @@ public sealed class RevolutionaryRuleSystem : GameRuleSystem<RevolutionaryRuleCo
 
         if (HasComp<RevolutionaryComponent>(ev.Target) ||
             HasComp<MindShieldComponent>(ev.Target) ||
-            !HasComp<HumanoidProfileComponent>(ev.Target) &&
+            !HasComp<HumanoidAppearanceComponent>(ev.Target) &&
             !alwaysConvertible ||
             !_mobState.IsAlive(ev.Target) ||
-            HasComp<ZombieComponent>(ev.Target) ||
-            !HasComp<RevolutionaryConverterComponent>(ev.Used))
+            HasComp<ZombieComponent>(ev.Target))
         {
             return;
         }
@@ -397,7 +396,7 @@ public sealed class RevolutionaryRuleSystem : GameRuleSystem<RevolutionaryRuleCo
         // - Мертв или является зомби
         if (HasComp<RevolutionaryComponent>(uid) ||
             HasComp<MindShieldComponent>(uid) ||
-            !HasComp<HumanoidProfileComponent>(uid) && !alwaysConvertible ||
+            !HasComp<HumanoidAppearanceComponent>(uid) && !alwaysConvertible ||
             !_mobState.IsAlive(uid) ||
             HasComp<ZombieComponent>(uid))
         {

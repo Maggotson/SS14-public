@@ -7,14 +7,13 @@
   flavor: medicine
   color: "#71bd85"
   metabolisms:
-    Bloodstream:
+    Medicine:
       effects:
-      - !type:EvenHealthChange
-        damage:
-          Brute: -0.25 #В случае введения системы органов должно будет лечить сердце, ведь инозин доставляет миокардам дополнительные пищевые клетки.
-          Airloss: -1
       - !type:HealthChange
         damage:
+          groups:
+            Brute: -0.25 #В случае введения системы органов должно будет лечить сердце, ведь инозин доставляет миокардам дополнительные пищевые клетки.
+            Airloss: -1
           types:
             Poison: -0.1
       - !type:HealthChange
@@ -23,12 +22,10 @@
           reagent: Adenosine
           min: 11
         damage:
+          groups:
+            Brute: 1
+            Airloss: 1
           types:
-            Blunt: 0.33333334
-            Slash: 0.33333334
-            Piercing: 0.33333334
-            Asphyxiation: 0.5
-            Bloodloss: 0.5
             Poison: 0.2
 
 - type: reagent
@@ -41,25 +38,23 @@
   pricePerUnit: 2
   color: "#2bd558"
   metabolisms:
-    Bloodstream:
+    Medicine:
       effects:
-      - !type:EvenHealthChange
-        damage:
-          Brute: -0.35
       - !type:HealthChange
         damage:
           types:
             Cellular: -0.65
+          groups:
+            Brute: -0.35
       - !type:HealthChange
         conditions:
         - !type:ReagentCondition
           reagent: AdenosineTriPhosphate
           min: 16
         damage:
+          groups:
+            Brute: 0.66
           types:
-            Blunt: 0.22
-            Slash: 0.22
-            Piercing: 0.22
             Poison: 1
             Cellular: 1
 
@@ -73,28 +68,22 @@
   pricePerUnit: 3
   color: "#7e916e"
   metabolisms:
-    Bloodstream:
+    Medicine:
       effects:
-      - !type:EvenHealthChange
-        damage:
-          Brute: -2
       - !type:HealthChange
         damage:
+          groups:
+            Brute: -2
           types:
             Poison: -0.85
-      - !type:EvenHealthChange
-        conditions:
-        - !type:ReagentCondition
-          reagent: Rezocillin
-          min: 30
-        damage:
-          Brute: -2
       - !type:HealthChange
         conditions:
         - !type:ReagentCondition
           reagent: Rezocillin
           min: 30
         damage:
+          groups:
+            Brute: -2
           types:
             Poison: -2
             Cellular: 4
@@ -109,11 +98,8 @@
   pricePerUnit: 10
   color: "#ffaa00"
   metabolisms:
-    Bloodstream:
+    Medicine:
       effects:
-      - !type:EvenHealthChange
-        damage:
-          Brute: -2
       - !type:HealthChange
         damage:
           types:
@@ -121,6 +107,8 @@
             Poison: -1.25
             Radiation: -1.33
             Heat: -1.33
+          groups:
+            Brute: -2
       - !type:HealthChange
         conditions:
         - !type:ReagentCondition
@@ -143,7 +131,7 @@
   flavor: medicine
   color: "#9942f5"
   metabolisms:
-    Bloodstream:
+    Medicine:
       effects:
       - !type:HealthChange
         damage:

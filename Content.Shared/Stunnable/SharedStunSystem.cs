@@ -150,9 +150,6 @@ public abstract partial class SharedStunSystem : EntitySystem
         var ev = new StunnedEvent(); // todo: rename event or change how it is raised - this event is raised each time duration of stun was externally changed
         RaiseLocalEvent(uid, ref ev);
 
-        var evDropHands = new DropHandItemsEvent();
-        RaiseLocalEvent(uid, ref evDropHands);
-
         var timeForLogs = duration.HasValue
             ? duration.Value.Seconds.ToString()
             : "Infinite";
@@ -392,14 +389,14 @@ public abstract partial class SharedStunSystem : EntitySystem
     private void OnEquipAttempt(EntityUid uid, StunnedComponent stunned, IsEquippingAttemptEvent args)
     {
         // is this a self-equip, or are they being stripped?
-        if (args.User == uid)
+        if (args.Equipee == uid)
             args.Cancel();
     }
 
     private void OnUnequipAttempt(EntityUid uid, StunnedComponent stunned, IsUnequippingAttemptEvent args)
     {
         // is this a self-equip, or are they being stripped?
-        if (args.User == uid)
+        if (args.Unequipee == uid)
             args.Cancel();
     }
 

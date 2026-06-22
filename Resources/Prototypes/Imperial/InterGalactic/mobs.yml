@@ -1,6 +1,6 @@
 - type: entity
   name: intergalactic старший инженер
-  parent: MobHuman
+  parent: BaseMobHuman
   id: MobInterGalacticCE
   suffix: InterGalactic
   components:
@@ -16,7 +16,7 @@
 
 - type: entity
   name: intergalactic инженер
-  parent: MobHuman
+  parent: BaseMobHuman
   id: MobInterGalacticEngineer
   suffix: InterGalactic
   components:
@@ -32,7 +32,7 @@
 
 - type: entity
   name: intergalactic атмосферный техник
-  parent: MobHuman
+  parent: BaseMobHuman
   id: MobInterGalacticAtmos
   suffix: InterGalactic
   components:
@@ -48,7 +48,7 @@
 
 - type: entity
   name: разведчик синдиката
-  parent: MobHuman
+  parent: BaseMobHuman
   id: MobSyndicateScout
   suffix: InterGalactic, Syndicate
   components:
@@ -71,7 +71,7 @@
 
 - type: entity
   name: потерянный агент синдиката
-  parent: MobHuman
+  parent: BaseMobHuman
   id: MobSyndicateLostAgent
   suffix: InterGalactic, Syndicate
   components:
@@ -83,7 +83,7 @@
         - SyndicateLostAgentGear
 
 - type: entity
-  parent: MobHuman
+  parent: BaseMobHuman
   id: MobOIPOutpostEmployee
   suffix: InterGalactic
   name: работник аванпоста выдачи заказов
@@ -98,7 +98,7 @@
       prototypes: [ OIPOutpostEmployeeGear ]
 
 - type: entity
-  parent: MobHuman
+  parent: BaseMobHuman
   id: MobCourierFreelance
   suffix: InterGalactic
   name: курьер-фрилансер

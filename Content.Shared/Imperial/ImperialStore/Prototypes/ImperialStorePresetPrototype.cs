@@ -8,7 +8,8 @@ namespace Content.Shared.Imperial.ImperialStore;
 /// <summary>
 ///     Specifies generic info for initializing a store.
 /// </summary>
-[Prototype]
+[Prototype("imperialStorePreset")]
+[DataDefinition]
 public sealed partial class ImperialStorePresetPrototype : IPrototype
 {
     [ViewVariables, IdDataField]

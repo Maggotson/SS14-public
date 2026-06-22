@@ -242,8 +242,6 @@
       path: /Audio/Voice/Vox/shriek1.ogg
     Laugh:
       path: /Audio/Voice/Vox/vox_laugh.ogg
-    Sneeze:
-      path: /Audio/Voice/Vox/vox_sneeze.ogg
     Cough:
       path: /Audio/Voice/Vox/vox_cough.ogg
     Sigh:
@@ -275,8 +273,6 @@
       path: /Audio/Voice/Diona/diona_scream.ogg
     Laugh:
       collection: DionaLaugh
-    Sneeze:
-      collection: DionaSneeze
     Chirp:
       path: /Audio/Animals/nymph_chirp.ogg
     Honk:
@@ -517,15 +513,13 @@
     Laugh:
       collection: MaleLaugh
     Sneeze:
-      collection: VulpkaninSneeze
+      collection: MaleSneezes
     Cough:
       collection: MaleCoughs
     Whistle:
       collection: Whistles
     Sigh:
       collection: MaleSigh
-    Yawn:
-      collection: VulpkaninYawns
     Scream:
       collection: VulpkaninScreams
     Growl:
@@ -540,12 +534,6 @@
       collection: VulpkaninWhines
     Howl:
       collection: VulpkaninHowls
-    Weh:
-      collection: Weh
-    Hew:
-      collection: Hew
-    Honk:
-      collection: BikeHorn
     Gasp:
       collection: MaleGasp
     DefaultDeathgasp:
@@ -559,15 +547,13 @@
     Laugh:
       collection: FemaleLaugh
     Sneeze:
-      collection: VulpkaninSneeze
+      collection: FemaleSneezes
     Cough:
       collection: FemaleCoughs
     Whistle:
       collection: Whistles
     Sigh:
       collection: FemaleSigh
-    Yawn:
-      collection: VulpkaninYawns
     Scream:
       collection: VulpkaninScreams
     Growl:
@@ -582,12 +568,6 @@
       collection: VulpkaninWhines
     Howl:
       collection: VulpkaninHowls
-    Weh:
-      collection: Weh
-    Hew:
-      collection: Hew
-    Honk:
-      collection: BikeHorn
     Gasp:
       collection: FemaleGasp
     DefaultDeathgasp:
@@ -632,22 +612,6 @@
       path: /Audio/Voice/Reptilian/reptilian_tailthump.ogg
       params:
         variation: 0.125
-    Clap:
-      collection: Claps
-    ClapSingle:
-      collection: ClapSingle
-    Snap:
-      collection: Snaps
-      params:
-        volume: -6
-    Salute:
-      collection: Salutes
-
-- type: emoteSounds
-  id: MothBodyEmotes
-  sounds:
-    Flap:
-      path: /Audio/Voice/Moth/moth_flap.ogg
     Clap:
       collection: Claps
     ClapSingle:

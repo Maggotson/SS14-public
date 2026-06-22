@@ -1,5 +1,4 @@
 ﻿using Content.Shared.Damage.Components;
-using Content.Shared.Damage.Systems;
 using Content.Shared.FixedPoint;
 using Robust.Shared.Prototypes;
 
@@ -11,11 +10,9 @@ namespace Content.Shared.EntityConditions.Conditions;
 /// <inheritdoc cref="EntityConditionSystem{T, TCondition}"/>
 public sealed partial class TotalDamageEntityConditionSystem : EntityConditionSystem<DamageableComponent, TotalDamageCondition>
 {
-    [Dependency] private readonly DamageableSystem _damageableSystem = default!;
-
     protected override void Condition(Entity<DamageableComponent> entity, ref EntityConditionEvent<TotalDamageCondition> args)
     {
-        var total = _damageableSystem.GetTotalDamage(entity.Owner);
+        var total = entity.Comp.TotalDamage;
         args.Result = total >= args.Condition.Min && total <= args.Condition.Max;
     }
 }

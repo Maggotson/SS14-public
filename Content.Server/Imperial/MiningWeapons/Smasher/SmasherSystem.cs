@@ -5,6 +5,7 @@ using Content.Shared.Imperial.MiningWeapons;
 using Robust.Shared.Input;
 using Robust.Shared.Timing;
 using Robust.Shared.Audio.Systems;
+using Content.Shared.Alert;
 using Content.Shared.CombatMode;
 using Content.Shared.Damage;
 using Content.Shared.Movement.Systems;
@@ -17,7 +18,7 @@ public sealed partial class SmasherSystem : SharedSmasherSystem
     [Dependency] private readonly IGameTiming _timing = default!;
     [Dependency] private readonly SharedAudioSystem _audio = default!;
     [Dependency] private readonly SharedCombatModeSystem _combatMode = default!;
-    [Dependency] private readonly DamageableSystem _damageableSystem = default!;
+    [Dependency] private readonly AlertsSystem _alerts = default!;
     [Dependency] private readonly MovementSpeedModifierSystem _movementSpeed = default!;
     [Dependency] private readonly MiningWeaponsHelpers _miningWeaponsHelpers = default!;
 
@@ -34,10 +35,8 @@ public sealed partial class SmasherSystem : SharedSmasherSystem
     public override void Update(float frameTime)
     {
         base.Update(frameTime);
-
         UpdateSmashers();
         UpdateActiveShields();
-        UpdateDecayShield();
     }
 
     #region Update Methods
@@ -62,20 +61,6 @@ public sealed partial class SmasherSystem : SharedSmasherSystem
         }
     }
 
-    private void UpdateDecayShield()
-    {
-        var shieldQuery = EntityQueryEnumerator<ShieldDecayComponent>();
-        while (shieldQuery.MoveNext(out var uid, out var decay))
-        {
-            // Manually disable sprite state animation at the last state in time (see meta.json)
-            if (_timing.CurTime >= decay.DecayEndTime)
-            {
-                HideShieldEffect(uid);
-                RemComp<ShieldDecayComponent>(uid);
-            }
-        }
-    }
-
     private void ProcessSmasher(EntityUid smasherUid, SmasherComponent smasher)
     {
         if (!TryGetHolder(smasherUid, out var user))
@@ -86,12 +71,6 @@ public sealed partial class SmasherSystem : SharedSmasherSystem
 
         smasher.LastAlertedUser[smasherUid] = user.Value;
         UpdateCooldownAlert(smasherUid, user.Value, smasher);
-
-        if (!_miningWeaponsHelpers.IsItemWielded(smasherUid) && HasComp<SmasherChargingComponent>(user.Value))
-        {
-            CancelCharging(user.Value, smasherUid, smasher);
-            return;
-        }
 
         if (!_miningWeaponsHelpers.IsItemWielded(smasherUid))
             return;

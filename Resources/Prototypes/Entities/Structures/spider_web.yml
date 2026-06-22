@@ -1,6 +1,6 @@
 - type: entity
-  abstract: true
   id: SpiderWebBase
+  abstract: true
   placement:
     mode: SnapgridCenter
     snap:
@@ -24,7 +24,6 @@
   - type: Damageable
     damageModifierSet: Wood
   - type: Temperature
-  - type: TemperatureDamage
     heatDamage:
       types:
         Heat: 5
@@ -45,9 +44,6 @@
     additionalKeys:
     - walls
     base: web_
-  - type: Construction
-    graph: CobwebsGraph
-    node: start
 
 - type: entity
   id: SpiderWeb
@@ -106,14 +102,20 @@
     intersectRatio: 0.2
   - type: Fixtures
     fixtures:
-      fix1:
-        hard: false
-        density: 7
+      slips:
         shape:
           !type:PhysShapeAabb
           bounds: "-0.4,-0.4,0.4,0.4"
+        hard: false
         layer:
-        - MidImpassable
+        - SlipLayer
+      fix1:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.4,-0.4,0.4,0.4"
+        density: 1000
+        mask:
+        - ItemMask
   - type: Destructible
     thresholds:
     - trigger:

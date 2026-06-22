@@ -6,13 +6,15 @@ namespace Content.Shared.Audio;
 
 public abstract class SharedAmbientSoundSystem : EntitySystem
 {
-    [Dependency] private readonly EntityQuery<AmbientSoundComponent> _query = default!;
+    private EntityQuery<AmbientSoundComponent> _query;
 
     public override void Initialize()
     {
         base.Initialize();
         SubscribeLocalEvent<AmbientSoundComponent, ComponentGetState>(GetCompState);
         SubscribeLocalEvent<AmbientSoundComponent, ComponentHandleState>(HandleCompState);
+
+        _query = GetEntityQuery<AmbientSoundComponent>();
     }
 
     public virtual void SetAmbience(EntityUid uid, bool value, AmbientSoundComponent? ambience = null)

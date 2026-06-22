@@ -10,7 +10,9 @@ namespace Content.Shared.Imperial.ImperialStore;
 /// <summary>
 ///     Defines a set item listing that is available in a store
 /// </summary>
-[Prototype]
+[Prototype("imperialListing")]
+[Serializable, NetSerializable]
+[DataDefinition]
 public sealed partial class ImperialListingPrototype : ImperialListingData, IPrototype;
 
 

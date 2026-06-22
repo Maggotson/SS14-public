@@ -10,31 +10,31 @@
               amount: 5
               doAfter: 1
             - tag: SuitEVA
-              name: recipes-outerclothing-EVA-name
+              name: скафандр EVA # Imperial Recipes Locale
               icon:
                 sprite: Clothing/OuterClothing/Suits/eva.rsi
                 state: icon
               doAfter: 1
             - tag: HelmetEVA
-              name: recipes-helmet-EVA-name
+              name: шлем скафандра EVA # Imperial Recipes Locale
               icon:
                 sprite: Clothing/Head/Helmets/eva.rsi
                 state: icon
               doAfter: 1
             - tag: CrayonRed
-              name: recipes-red-crayon-name
+              name: красный мелок # Imperial Recipes Locale
               icon:
                 sprite: Objects/Fun/crayons.rsi
                 state: red
               doAfter: 1
             - tag: CrayonBlack
-              name: recipes-black-crayon-name
+              name: черный мелок # Imperial Recipes Locale
               icon:
                 sprite: Objects/Fun/crayons.rsi
                 state: black
               doAfter: 1
             - tag: MimeBelt
-              name: recipes-mime-belt-name
+              name: подтяжки # Imperial Recipes Locale
               icon:
                 sprite: Clothing/Belt/suspenders_red.rsi
                 state: icon

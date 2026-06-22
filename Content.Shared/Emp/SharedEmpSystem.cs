@@ -6,7 +6,6 @@ using Robust.Shared.Map;
 using Robust.Shared.Timing;
 using Robust.Shared.Network;
 using Robust.Shared.Prototypes;
-using Robust.Shared.Utility;
 
 namespace Content.Shared.Emp;
 
@@ -18,8 +17,6 @@ public abstract class SharedEmpSystem : EntitySystem
     [Dependency] private readonly SharedAudioSystem _audio = default!;
     [Dependency] private readonly SharedTransformSystem _transform = default!;
 
-    [Dependency] private readonly EntityQuery<EmpResistanceComponent> _resistanceQuery = default!;
-
     private HashSet<EntityUid> _entSet = new();
 
     public override void Initialize()
@@ -29,8 +26,6 @@ public abstract class SharedEmpSystem : EntitySystem
         SubscribeLocalEvent<EmpDisabledComponent, ExaminedEvent>(OnExamine);
         SubscribeLocalEvent<EmpDisabledComponent, ComponentRemove>(OnRemove);
         SubscribeLocalEvent<EmpDisabledComponent, RejuvenateEvent>(OnRejuvenate);
-
-        SubscribeLocalEvent<EmpResistanceComponent, EmpAttemptEvent>(OnResistEmpAttempt);
     }
 
     public static readonly EntProtoId EmpPulseEffectPrototype = "EffectEmpPulse";
@@ -67,8 +62,7 @@ public abstract class SharedEmpSystem : EntitySystem
     /// <param name="energyConsumption">The amount of energy consumed by the EMP pulse.</param>
     /// <param name="duration">The duration of the EMP effects.</param>
     /// <param name="user">The player that caused the effect. Used for predicted audio.</param>
-    /// <param name="predicted">Whether this pulse is being replicated on the client.</param>
-    public void EmpPulse(EntityCoordinates coordinates, float range, float energyConsumption, TimeSpan duration, EntityUid? user = null, bool predicted = true)
+    public void EmpPulse(EntityCoordinates coordinates, float range, float energyConsumption, TimeSpan duration, EntityUid? user = null)
     {
         _entSet.Clear();
         _lookup.GetEntitiesInRange(coordinates, range, _entSet);
@@ -80,10 +74,7 @@ public abstract class SharedEmpSystem : EntitySystem
         if (_net.IsServer)
             Spawn(EmpPulseEffectPrototype, coordinates);
 
-        if (predicted)
-            _audio.PlayPredicted(EmpSound, coordinates, user);
-        else
-            _audio.PlayPvs(EmpSound, coordinates);
+        _audio.PlayPredicted(EmpSound, coordinates, user);
     }
 
     /// <summary>
@@ -114,14 +105,7 @@ public abstract class SharedEmpSystem : EntitySystem
     /// <returns>If the entity was affected by the EMP.</returns>
     public bool DoEmpEffects(EntityUid uid, float energyConsumption, TimeSpan duration, EntityUid? user = null)
     {
-        var strMultiplier = 1f;
-        var durMultiplier = 1f;
-        if (_resistanceQuery.TryComp(uid, out var resistance))
-        {
-            strMultiplier = resistance.StrengthMultiplier;
-            durMultiplier = resistance.DurationMultiplier;
-        }
-        var ev = new EmpPulseEvent(energyConsumption * strMultiplier, false, false, duration * durMultiplier, user);
+        var ev = new EmpPulseEvent(energyConsumption, false, false, duration, user);
         RaiseLocalEvent(uid, ref ev);
 
         // TODO: replace with PredictedSpawn once it works with animated sprites
@@ -132,7 +116,7 @@ public abstract class SharedEmpSystem : EntitySystem
             return ev.Affected;
 
         var disabled = EnsureComp<EmpDisabledComponent>(uid);
-        disabled.DisabledUntil = Timing.CurTime + duration * durMultiplier;
+        disabled.DisabledUntil = Timing.CurTime + duration;
         Dirty(uid, disabled);
 
         return ev.Affected;
@@ -167,14 +151,6 @@ public abstract class SharedEmpSystem : EntitySystem
     private void OnRejuvenate(Entity<EmpDisabledComponent> ent, ref RejuvenateEvent args)
     {
         RemCompDeferred<EmpDisabledComponent>(ent);
-    }
-
-    private void OnResistEmpAttempt(Entity<EmpResistanceComponent> ent, ref EmpAttemptEvent args)
-    {
-        // We only cancel if the strength multiplier is 0, because then the effect basically doesn't exist.
-        // Allows us to make things resistant to the duration, but still lose charge to the EMP.
-        if (ent.Comp.StrengthMultiplier <= 0)
-            args.Cancelled = true;
     }
 }
 

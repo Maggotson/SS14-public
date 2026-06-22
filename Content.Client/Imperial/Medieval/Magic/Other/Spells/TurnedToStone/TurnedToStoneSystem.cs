@@ -12,10 +12,6 @@ public sealed partial class TurnedToStoneSystem : SharedTurnedToStoneSystem
 {
     [Dependency] private readonly IPrototypeManager _prototypeManager = default!;
     [Dependency] private readonly PopupSystem _popupSystem = default!;
-    [Dependency] private readonly IEntityManager _entityManager = default!;
-    private SpriteSystem _spriteSystem = default!;
-
-    private static string _turnedToStoneShaderProtoId = "TurnedToStone";
 
 
     private ShaderInstance? _shader;
@@ -26,8 +22,7 @@ public sealed partial class TurnedToStoneSystem : SharedTurnedToStoneSystem
     {
         base.Initialize();
 
-        _shader = _prototypeManager.Index<ShaderPrototype>(_turnedToStoneShaderProtoId).InstanceUnique();
-        _spriteSystem = _entityManager.System<SpriteSystem>();
+        _shader = _prototypeManager.Index<ShaderPrototype>("TurnedToStone").InstanceUnique();
     }
 
     protected override void OnStartup(EntityUid uid, TurnedToStoneComponent component, ComponentStartup args)
@@ -43,7 +38,7 @@ public sealed partial class TurnedToStoneSystem : SharedTurnedToStoneSystem
         _popupSystem.PopupEntity(Loc.GetString("turned-to-stone"), uid, uid, Shared.Popups.PopupType.LargeCaution);
         _cachedShaders.TryAdd(uid, spriteComponent.PostShader?.Duplicate());
 
-        _spriteSystem.SetColor(uid, Color.White);
+        spriteComponent.Color = Color.White;
         spriteComponent.PostShader = _shader;
     }
 

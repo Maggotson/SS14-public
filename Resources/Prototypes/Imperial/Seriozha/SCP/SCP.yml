@@ -4,10 +4,6 @@
   id: ImperialSCPBase
   suffix: AI
   components:
-    - type: SlowOnDamage
-      speedModifierThresholds:
-        60: 1
-        80: 1
     - type: Tag
       tags:
       - SCP
@@ -23,11 +19,15 @@
         path: /Audio/Effects/Smoke-grenade.ogg
     - type: NoSlip
     - type: MovementIgnoreGravity
+    - type: SlowOnDamage
+      enabled: false
     - type: ZombieImmune
     - type: NonSpreaderZombie
     - type: Clumsy
     - type: Damageable
       damageModifierSet: SCPStandart
+    - type: Body
+      prototype: Human
     - type: Bloodstream
       bloodMaxVolume: 0
     - type: NpcFactionMember
@@ -74,7 +74,6 @@
         0: Alive
         4000: Dead
     - type: MeleeWeapon
-      attackRate: 0.33
       hidden: true
       altDisarm: false
       soundHit:
@@ -83,7 +82,7 @@
       animation: WeaponArcPunch
       damage:
         types:
-          Blunt: 5
+          Blunt: 80
       resistanceBypass: true
     - type: Speech
       speechVerb: LargeMob
@@ -103,29 +102,28 @@
             !type:PhysShapeCircle
             radius: 0.4
           density: 280
+          hard: false
+          mask:
+          - MobMask
           layer:
           - GhostImpassable
           - MobLayer
     - type: ItemToggle
       predictable: false
       onUse: false
-    - type: UseDelay
-      delay: 1.0
-    - type: SCP106
-      firstHitDamage:
-        types:
-          Poison: 40
-      damagePerSecond:
-        types:
-          Blunt: 1
-    - type: ImperialSCPChaseMusic
-      chaseSound:
+    - type: ItemToggleActiveSound
+      activeSound:
         path: /Audio/Imperial/Seriozha/SCP/chase/chase4.ogg
         params:
           volume: -2
           range: 10
-    - type: StaminaDamageOnHit
-      damage: 70
+    - type: UseDelay
+      delay: 1.0
+    - type: ToggleClothing
+      action: ActionToggleSCPMusic
+      mustEquip: false
+      sprite: /Textures/Interface/Misc/job_icons.rsi
+      state: Musician
 
 - type: entity
   name: Fireman

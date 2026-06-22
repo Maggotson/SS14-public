@@ -24,7 +24,6 @@
     - SemiAuto
     soundGunshot:
       path: /Audio/Weapons/Guns/Gunshots/kinetic_accel.ogg
-    projectileSpeed: 25
   - type: AmmoCounter
   - type: Appearance
   - type: GenericVisualizer
@@ -50,8 +49,3 @@
     - Belt
   - type: UseDelay
     delay: 1
-### IMPERIAL IMPROVED SALVAGE START
-  - type: Tag
-    tags:
-    - PKA
-### IMPERIAL IMPROVED SALVAGE END

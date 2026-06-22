@@ -15,8 +15,6 @@ public sealed class StepTriggerSystem : EntitySystem
     [Dependency] private readonly SharedMapSystem _map = default!;
     [Dependency] private readonly EntityWhitelistSystem _whitelistSystem = default!;
 
-    [Dependency] private readonly EntityQuery<PhysicsComponent> _physicsquery = default!;
-
     public override void Initialize()
     {
         UpdatesOutsidePrediction = true;
@@ -39,11 +37,12 @@ public sealed class StepTriggerSystem : EntitySystem
 
     public override void Update(float frameTime)
     {
+        var query = GetEntityQuery<PhysicsComponent>();
         var enumerator = EntityQueryEnumerator<StepTriggerActiveComponent, StepTriggerComponent, TransformComponent>();
 
         while (enumerator.MoveNext(out var uid, out var active, out var trigger, out var transform))
         {
-            if (!Update(uid, trigger, transform))
+            if (!Update(uid, trigger, transform, query))
             {
                 continue;
             }
@@ -52,7 +51,7 @@ public sealed class StepTriggerSystem : EntitySystem
         }
     }
 
-    private bool Update(EntityUid uid, StepTriggerComponent component, TransformComponent transform)
+    private bool Update(EntityUid uid, StepTriggerComponent component, TransformComponent transform, EntityQuery<PhysicsComponent> query)
     {
         if (!component.Active ||
             component.Colliding.Count == 0)
@@ -79,15 +78,15 @@ public sealed class StepTriggerSystem : EntitySystem
 
         foreach (var otherUid in component.Colliding)
         {
-            UpdateColliding(uid, component, transform, otherUid);
+            UpdateColliding(uid, component, transform, otherUid, query);
         }
 
         return false;
     }
 
-    private void UpdateColliding(EntityUid uid, StepTriggerComponent component, TransformComponent ownerXform, EntityUid otherUid)
+    private void UpdateColliding(EntityUid uid, StepTriggerComponent component, TransformComponent ownerXform, EntityUid otherUid, EntityQuery<PhysicsComponent> query)
     {
-        if (!_physicsquery.TryComp(otherUid, out var otherPhysics))
+        if (!query.TryGetComponent(otherUid, out var otherPhysics))
             return;
 
         var otherXform = Transform(otherUid);

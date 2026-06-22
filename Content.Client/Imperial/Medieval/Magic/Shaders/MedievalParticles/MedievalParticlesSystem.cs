@@ -15,7 +15,6 @@ public sealed partial class MedievalParticlesSystem : EntitySystem
     [Dependency] private readonly IGameTiming _timing = default!;
     [Dependency] private readonly IRobustRandom _random = default!;
 
-    private static string _shaderId = "MedievalParticles";
 
     private Dictionary<EntityUid, ShaderInstance> _shaders = new();
 
@@ -42,7 +41,7 @@ public sealed partial class MedievalParticlesSystem : EntitySystem
         component.SpawnTime = _timing.CurTime;
         component.Seed = _random.NextFloat();
 
-        _shaders.Add(uid, _prototypeManager.Index<ShaderPrototype>(_shaderId).InstanceUnique());
+        _shaders.Add(uid, _prototypeManager.Index<ShaderPrototype>("MedievalParticles").InstanceUnique());
         SetShader(uid, true);
     }
 

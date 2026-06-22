@@ -499,8 +499,7 @@
     - Medkit
   - type: ItemCounter
     count:
-      components: [ GasTank ]
-      tags: [ PillCanister, FitsHardsuit, Syringe, OxygenMask, Medipen ]
+      tags: [ PillCanister, FitsHardsuit, GasTank, Syringe, OxygenMask, Medipen ]
     composite: true
     layerStates:
     - bottle1

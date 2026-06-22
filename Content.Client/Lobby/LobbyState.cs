@@ -15,6 +15,8 @@ using Robust.Client.UserInterface.Controls;
 using Robust.Shared.Configuration;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Timing;
+using Content.Shared.Imperial.ICCVar; //Imperial
+using Robust.Shared.Configuration; //Imperial
 
 namespace Content.Client.Lobby
 {

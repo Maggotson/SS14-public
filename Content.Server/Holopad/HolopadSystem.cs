@@ -10,6 +10,7 @@ using Content.Shared.Holopad;
 using Content.Shared.IdentityManagement;
 using Content.Shared.Labels.Components;
 using Content.Shared.Mobs;
+using Content.Shared.Mobs.Systems;
 using Content.Shared.Power;
 using Content.Shared.Silicons.StationAi;
 using Content.Shared.Speech;
@@ -23,7 +24,6 @@ using Robust.Shared.Containers;
 using Robust.Shared.Timing;
 using Robust.Shared.Utility;
 using System.Linq;
-using Content.Shared.Power.EntitySystems;
 
 namespace Content.Server.Holopad;
 
@@ -41,7 +41,7 @@ public sealed class HolopadSystem : SharedHolopadSystem
     [Dependency] private readonly PopupSystem _popupSystem = default!;
     [Dependency] private readonly IGameTiming _timing = default!;
     [Dependency] private readonly PvsOverrideSystem _pvs = default!;
-    [Dependency] private readonly SharedPowerStateSystem _powerState = default!;
+    [Dependency] private readonly MobStateSystem _mobState = default!;
 
     private float _updateTimer = 1.0f;
     private const float UpdateTime = 1.0f;
@@ -550,14 +550,10 @@ public sealed class HolopadSystem : SharedHolopadSystem
         {
             _telephoneSystem.SetSpeakerForTelephone((entity, entityTelephone), (hologramUid, hologramSpeech));
         }
-
-        _powerState.SetWorkingState(entity.Owner, true);
     }
 
     private void DeleteHologram(Entity<HolopadHologramComponent> hologram, Entity<HolopadComponent> attachedHolopad)
     {
-        _powerState.SetWorkingState(attachedHolopad.Owner, false);
-
         attachedHolopad.Comp.Hologram = null;
 
         QueueDel(hologram);

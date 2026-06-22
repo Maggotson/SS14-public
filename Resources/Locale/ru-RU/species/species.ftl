@@ -7,10 +7,7 @@ species-name-slime = Слаймолюд
 species-name-diona = Диона
 species-name-arachnid = Арахнид
 species-name-moth = Моль
-species-name-skeleton = Скелет
 species-name-vox = Вокс
-species-name-gingerbread = вкусная выпечка, хорошая
-
-## Misc species things
-
+species-name-skeleton = Скелет
 snail-hurt-by-salt-popup = Соленый раствор жжет, как кислота!
+species-name-gingerbread = вкусная выпечка, хорошая

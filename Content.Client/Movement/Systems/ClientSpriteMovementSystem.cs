@@ -10,11 +10,14 @@ namespace Content.Client.Movement.Systems;
 public sealed class ClientSpriteMovementSystem : SharedSpriteMovementSystem
 {
     [Dependency] private readonly SpriteSystem _sprite = default!;
-    [Dependency] private readonly EntityQuery<SpriteComponent> _spriteQuery = default!;
+
+    private EntityQuery<SpriteComponent> _spriteQuery;
 
     public override void Initialize()
     {
         base.Initialize();
+
+        _spriteQuery = GetEntityQuery<SpriteComponent>();
 
         SubscribeLocalEvent<SpriteMovementComponent, AfterAutoHandleStateEvent>(OnAfterAutoHandleState);
     }

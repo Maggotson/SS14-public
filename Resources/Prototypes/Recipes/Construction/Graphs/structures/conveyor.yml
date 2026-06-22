@@ -10,7 +10,7 @@
               icon:
                 sprite: Structures/conveyor.rsi
                 state: conveyor_loose
-              name: recipes-conveyor-assembly-name
+              name: разобранная конвейерная лента # Imperial Recipes Locale
               doAfter: 2
     - node: item
       entity: ConveyorBeltAssembly

@@ -8,7 +8,7 @@ using Robust.Shared.Timing;
 namespace Content.Client.Imperial.RadialMenu;
 
 
-[GenerateTypedNameReferences]
+[GenerateTypedNameReferences, Virtual]
 public sealed partial class RadialButton : Control
 {
     [Animatable]

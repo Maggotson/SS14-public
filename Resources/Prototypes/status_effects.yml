@@ -51,7 +51,13 @@
   id: RatvarianLanguage #Praise him
 
 - type: statusEffect
+  id: StaminaModifier
+
+- type: statusEffect
   id: Flashed
+
+- type: statusEffect
+  id: RadiationProtection
 
 - type: statusEffect
   id: Adrenaline

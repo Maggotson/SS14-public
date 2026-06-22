@@ -1,13 +1,17 @@
 ﻿- type: construction
+  name: Каркас компьютера # Imperial Recipes Locale
   id: Computer
   graph: Computer
   startNode: start
   targetNode: computer
   category: construction-category-machines
+  description: Основа, используемая для постройки различных консолей. # Imperial Recipes Locale
   placementMode: SnapgridCenter
   canBuildInImpassable: false
 
 - type: construction
+  name: Каркас машины # Imperial Recipes Locale
+  description: Основа, используемая для постройки различных машин. # Imperial Recipes Locale
   id: MachineFrame
   graph: Machine
   startNode: start
@@ -18,22 +22,26 @@
 
 # Switching
 - type: construction
+  name: Двухпозиционный рычаг # Imperial Recipes Locale
   id: TwoWayLeverRecipe
   graph: LeverGraph
   startNode: start
   targetNode: LeverNode
   category: construction-category-machines
+  description: Рычаг для управления машинами. Имеет три позиции. # Imperial Recipes Locale
   objectType: Structure
   canBuildInImpassable: false
   conditions:
     - !type:TileNotBlocked
 
 - type: construction
+  name: Переключатель сети ЛКП # Imperial Recipes Locale
   id: LightSwitchRecipe
   graph: LightSwitchGraph
   startNode: start
   targetNode: LightSwitchNode
   category: construction-category-machines
+  description: Это переключатель источников света, использующих ЛКП. # Imperial Recipes Locale
   objectType: Structure
   placementMode: SnapgridCenter
   canRotate: true
@@ -43,11 +51,13 @@
   hide: true #TODO: Fix the lightswitch, issue #34659. Until then, keep hidden so people don't build it and get confused.
 
 - type: construction
+  name: Переключатель сигнала # Imperial Recipes Locale
   id: SignalSwitchRecipe
   graph: SignalSwitchGraph
   startNode: start
   targetNode: SignalSwitchNode
   category: construction-category-machines
+  description: Это переключатель питания устройств. # Imperial Recipes Locale
   objectType: Structure
   placementMode: SnapgridCenter
   canRotate: true
@@ -56,11 +66,13 @@
     - !type:WallmountCondition
 
 - type: construction
+  name: Кнопка сигнала # Imperial Recipes Locale
   id: SignalButtonRecipe
   graph: SignalButtonGraph
   startNode: start
   targetNode: SignalButtonNode
   category: construction-category-machines
+  description: Эта кнопка что-то активирует. # Imperial Recipes Locale
   objectType: Structure
   placementMode: SnapgridCenter
   canRotate: true
@@ -69,11 +81,13 @@
     - !type:WallmountCondition
 
 - type: construction
+  name: Направленный переключатель сети ЛКП # Imperial Recipes Locale
   id: LightSwitchDirectionalRecipe
   graph: LightSwitchDirectionalGraph
   startNode: start
   targetNode: LightSwitchDirectionalNode
   category: construction-category-machines
+  description: Это переключатель источников света, использующих ЛКП. Активация возможна только со стороны строительства. # Imperial Recipes Locale
   objectType: Structure
   placementMode: SnapgridCenter
   canRotate: true
@@ -83,11 +97,13 @@
   hide: true #TODO: Fix the lightswitch, issue #34659. Until then, keep hidden so people don't build it and get confused.
 
 - type: construction
+  name: Направленный переключатель сигнала # Imperial Recipes Locale
   id: SignalSwitchDirectionalRecipe
   graph: SignalSwitchDirectionalGraph
   startNode: start
   targetNode: SignalSwitchDirectionalNode
   category: construction-category-machines
+  description: Это переключатель питания устройств. Активация возможна только со стороны строительства. # Imperial Recipes Locale
   objectType: Structure
   placementMode: SnapgridCenter
   canRotate: true
@@ -96,11 +112,13 @@
     - !type:WallmountCondition
 
 - type: construction
+  name: Направленная кнопка сигнала # Imperial Recipes Locale
   id: SignalButtonDirectionalRecipe
   graph: SignalButtonDirectionalGraph
   startNode: start
   targetNode: SignalButtonDirectionalNode
   category: construction-category-machines
+  description: Эта кнопка что-то активирует. Активация возможна только со стороны строительства. # Imperial Recipes Locale
   objectType: Structure
   placementMode: SnapgridCenter
   canRotate: true

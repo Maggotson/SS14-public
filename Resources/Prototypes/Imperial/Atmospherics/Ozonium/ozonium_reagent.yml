@@ -15,18 +15,16 @@
       - !type:Flammable
         multiplier: 0.8
   metabolisms:
-    Bloodstream:
+    Poison:
       effects:
       - !type:HealthChange
         damage:
-          types:
-            Asphyxiation: 4
-            Bloodloss: 4
-    Respiration:
+           groups:
+            Airloss: 4
+    Gas:
       effects:
       - !type:HealthChange
         ignoreResistances: true
         damage:
-          types:
-            Asphyxiation: 4
-            Bloodloss: 4
+           groups:
+            Airloss: 8

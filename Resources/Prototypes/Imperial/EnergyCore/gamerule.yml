@@ -1,5 +1,0 @@
-- type: entity
-  parent: BaseGameRule
-  id: CoreTechnical
-  components:
-  - type: CoreTechnicalRule

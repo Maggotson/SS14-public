@@ -83,6 +83,7 @@
     - type: ItemToggleSize
       activatedSize: Huge
   - type: MagazineAmmoProvider
+    whitelist:
     prototypes:
       - FuelTankFlamethrowerSmall
       - FuelTankFlamethrowerMedium
@@ -95,9 +96,6 @@
         insertSound: /Audio/Weapons/Guns/MagIn/batrifle_magin.ogg
         ejectSound: /Audio/Weapons/Guns/MagOut/batrifle_magout.ogg
         priority: 2
-        whitelist:
-          tags:
-            - FlamethrowerTank
   - type: Appearance
 
 - type: entity
@@ -109,9 +107,6 @@
   - type: BallisticAmmoProvider
     proto: FlamethrowerBullet
     cycleable: false
-  - type: Tag
-    tags:
-    - FlamethrowerTank
 
 - type: entity
   id: FuelTankFlamethrowerSmall
@@ -184,6 +179,3 @@
       right:
       - state: inhand-right
   - type: Appearance
-
-- type: Tag
-  id: FlamethrowerTank

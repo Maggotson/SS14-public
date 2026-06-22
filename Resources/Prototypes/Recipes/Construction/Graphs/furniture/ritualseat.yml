@@ -33,7 +33,7 @@
             icon:
               sprite: Mobs/Species/Human/parts.rsi
               state: "head_m"
-            name: recipes-human-head-name
+            name: человеческая голова # Imperial Recipes Locale
             doAfter: 1
 
     - node: chairCursed
@@ -42,7 +42,7 @@
         - to: chairRitual
           completed:
             - !type:SpawnPrototype
-              prototype: OrganSkeletonPersonHead
+              prototype: HeadSkeleton
               amount: 1
           steps:
             - tool: Prying

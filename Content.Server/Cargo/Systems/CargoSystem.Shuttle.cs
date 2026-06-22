@@ -6,7 +6,6 @@ using Content.Shared.Cargo.Components;
 using Content.Shared.Cargo.Events;
 using Content.Shared.Cargo.Prototypes;
 using Content.Shared.CCVar;
-using Content.Shared.HijackBeacon;
 using Robust.Shared.Audio;
 using Robust.Shared.Prototypes;
 using Content.Shared.Stacks; // Imperial Space Pirates: New Horizon
@@ -16,7 +15,7 @@ namespace Content.Server.Cargo.Systems;
 public sealed partial class CargoSystem
 {
     /*
-     * Handles automated trade station / trade mechanics.
+     * Handles cargo shuttle / trade mechanics.
      */
 
     private static readonly SoundPathSpecifier ApproveSound = new("/Audio/Effects/Cargo/ping.ogg");

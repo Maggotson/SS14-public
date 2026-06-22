@@ -13,11 +13,13 @@ public sealed class SlidingSystem : EntitySystem
     [Dependency] private readonly SharedPhysicsSystem _physics = default!;
     [Dependency] private readonly MovementSpeedModifierSystem _speedModifierSystem = default!;
 
-    [Dependency] private readonly EntityQuery<SlipperyComponent> _slipperyQuery = default!;
+    private EntityQuery<SlipperyComponent> _slipperyQuery;
 
     public override void Initialize()
     {
         base.Initialize();
+
+        _slipperyQuery = GetEntityQuery<SlipperyComponent>();
 
         SubscribeLocalEvent<SlidingComponent, ComponentInit>(OnComponentInit);
         SubscribeLocalEvent<SlidingComponent, ComponentShutdown>(OnComponentShutdown);
