@@ -1,0 +1,26 @@
+- type: entity
+  name: АКМС с обвесами
+  parent: WeaponRifleAk
+  id: HamMaggotsonWeaponRifleAKAttachments
+  description: жопа.
+  components:
+  - type: ItemSlots
+    slots:
+      gun_attachment_right:
+        name: Right attachment
+        insertSound: /Audio/Weapons/Guns/MagIn/ltrifle_magin.ogg
+        ejectSound: /Audio/Weapons/Guns/MagOut/ltrifle_magout.ogg
+        priority: 2
+        whitelist:
+          tags:
+            - AttachmentRight
+  - type: PointLight
+    enabled: false
+    mask: /Textures/Effects/LightMasks/cone.png
+    autoRot: true
+    radius: 6
+    netsync: true
+  - type: ContainerContainer
+    containers:
+      gun_attachment_right: !type:ContainerSlot
+  - type: WeaponAttachments

@@ -1,0 +1,66 @@
+- type: entity
+  id: WeaponAttachmentFlashlight
+  parent: BaseItem
+  name: тактический фонарик
+  description: Компактный фонарик для крепления на оружие.
+  components:
+  - type: Sprite
+    sprite: Objects/Fun/bikehorn.rsi
+    state: icon
+  - type: Tag
+    tags:
+    - AttachmentRight
+  - type: AttachmentFlashlight
+  - type: Attachment
+  - type: HandheldLight
+    addPrefix: false
+    blinkingBehaviourId: blinking
+    radiatingBehaviourId: radiating
+    #toggleOnInteract: false
+  - type: LightBehaviour
+    behaviours:
+      - !type:FadeBehaviour
+        id: radiating
+        maxDuration: 2.0
+        startValue: 3.0
+        endValue: 2.0
+        isLooped: true
+        reverseWhenFinished: true
+      - !type:PulseBehaviour
+        id: blinking
+        interpolate: Nearest
+        maxDuration: 1.0
+        startValue: 0.1
+        endValue: 2.0
+        isLooped: true
+  - type: ItemTogglePointLight
+  - type: PowerCellSlot
+    cellSlotId: cell_slot
+  - type: ContainerContainer
+    containers:
+      cell_slot: !type:ContainerSlot
+  - type: ItemSlots
+    slots:
+      cell_slot:
+        name: power-cell-slot-component-slot-name-default
+        startingItem: PowerCellMedium
+  - type: PointLight
+    enabled: false
+    mask: /Textures/Effects/LightMasks/cone.png
+    autoRot: true
+    radius: 6
+    netsync: true
+
+- type: entity
+  parent: BaseAction
+  id: ActionToggleAttachmentFlashlight
+  name: Toggle Flashlight Attachment
+  description: Toggles the flashlight attachment off and on.
+  components:
+  - type: Action
+    itemIconStyle: BigItem
+  - type: InstantAction
+    event: !type:ToggleActionEvent
+
+- type: Tag
+  id: AttachmentRight
